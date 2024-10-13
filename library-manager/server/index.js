@@ -1,10 +1,20 @@
 const express= require("express");
 const { connection } = require("./config/db");
+const authRouter = require("./routes/auth-route");
+const requestRouter = require("./routes/request-route");
+const adminRouter = require("./routes/admin-route");
+const bookRouter = require("./routes/book-route");
 
 require("dotenv").config()
 
 const app = express();
 
+app.use(express.json());
+
+app.use('/api/auth', authRouter);
+app.use('/api/books', bookRouter);
+app.use('/api/requests', requestRouter);
+app.use('/api/admin', adminRouter);
 
 
 
