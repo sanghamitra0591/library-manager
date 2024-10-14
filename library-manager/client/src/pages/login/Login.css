@@ -1,0 +1,62 @@
+
+.loginWrapper{
+    text-align: center;
+    height: 100vh;
+    place-content: center;
+}
+.loginContainer{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 30%;
+    margin: auto;
+    place-content: center;
+    padding: 70px;
+    border-radius: 20px;
+}
+.loginContainer>h2{
+    font-size: 32px;
+    color: #27374D;
+}
+.loginForm{
+    text-align: center;
+    padding: 50px;
+    margin: auto;
+    margin-top: 30px;
+}
+.loginForm >input {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    padding: 10px;
+    font-size: 17px;
+    outline: none;
+    margin: 5px auto;
+    background: none;
+}
+.loginForm>button{
+    background-color: #fa0249;
+    color: #DDE6ED;
+    border: none;
+    font-weight: bold;
+    width: 50%;
+    padding: 16px 12px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    outline: none;
+    margin: 40px auto auto auto;
+}
+.loginForm>button:hover{
+    background-color: #af0032;
+    cursor: pointer;
+}
+.loginContainer>p{
+    font-size: 18px;
+}
+.loginContainer>p>span>a{
+    font-size: 18px;
+    text-decoration: underline;
+    color: blue;
+}
+.loginContainer>p>span>a:hover{
+    color: #fa0249;
+}

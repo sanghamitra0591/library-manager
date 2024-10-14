@@ -1,0 +1,36 @@
+
+.profileWrapper{
+    border: 1px solid black;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 100px;
+}
+.profileSettings{
+    border: 1px solid black;
+    padding: 0px 20px;
+    width: 25%;
+}
+.profileSettings>div{
+    border: 1px solid black;
+    margin: 20px auto;
+    padding: 0px 10px;
+}
+.profileSettings>div>p{
+    font-size: 22px;
+    font-weight: bold;
+}
+.profileSettings>div>button{
+    width: 100%;
+    border: none;
+    padding: 20px 0px;
+    background-color: #fa0249;
+    color: #DDE6ED;
+    font-size: 22px;
+    font-weight: bold;
+}
+.profileSettings>div>button:hover{
+    background-color: #af0032;
+    cursor: pointer;
+}
