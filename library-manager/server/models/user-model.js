@@ -18,6 +18,10 @@ const userSchema = mongoose.Schema({
   penalties: {
     type: Number,
     default: 0
+  },
+  category: {
+    type: String,
+    default: ""
   }
 });
 

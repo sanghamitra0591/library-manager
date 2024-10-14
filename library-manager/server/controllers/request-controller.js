@@ -10,9 +10,10 @@ const createRequest = async (req, res) => {
     return res.status(400).json({ message: 'Book not available' });
   }
 
-  const request = new Request({
+  const request = new RequestModel({
     userId: req.user._id,
     bookId,
+    category: book.category
   });
 
   await request.save();
@@ -22,13 +23,24 @@ const createRequest = async (req, res) => {
   res.status(201).json(request);
 };
 
+
 const handleRequest = async (req, res) => {
   const { requestId, status } = req.body;
   const request = await RequestModel.findById(requestId).populate('bookId');
+  if (!request) {
+    return res.status(404).json({ message: 'Request not found' });
+  }
+  if (request.category !== req.user.category) {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  if (request.status !== "pending") {
+    return res.status(400).json({ message: 'Unable to change status' });
+  }
 
   if (status === 'accepted') {
     request.status = status;
-    request.returnDate = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);
+    request.requestAccepted = new Date();
+    request.expectedReturnDate = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000);
     await request.save();
 
     request.bookId.quantity -= 1;
@@ -41,13 +53,13 @@ const handleRequest = async (req, res) => {
 };
 
 const getUserRequests = async (req, res) => {
-  const userRequests = await Request.find({ userId: req.user._id }).populate('bookId');
+  const userRequests = await RequestModel.find({ userId: req.user._id }).populate('bookId');
   res.json(userRequests);
 };
 
-const getUserTakenBooks = async (req, res) => {
-  const takenBooks = await Request.find({ userId: req.user._id, status: 'accepted' }).populate('bookId');
-  res.json(takenBooks);
+const getAllRequests = async (req, res) => {
+  const allRequests = await RequestModel.find({ category: req.user.category });
+  res.json(allRequests);
 };
 
-module.exports = { createRequest, handleRequest, getUserRequests, getUserTakenBooks };
+module.exports = { createRequest, handleRequest, getUserRequests, getAllRequests };

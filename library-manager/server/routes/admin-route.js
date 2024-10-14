@@ -1,12 +1,13 @@
 const express = require('express');
-const { addAdmin, getAllUsers } = require('../controllers/adminController');
-const { authMiddleware, roleMiddleware } = require('../middlewares/auth-validator-middleware');
+const { authValidator, roleMiddleware } = require('../middlewares/auth-validator-middleware');
+const { addAdmin, getAllUsers } = require('../controllers/admin-controller');
+const { getUserRequests } = require('../controllers/request-controller');
 const adminRouter = express.Router();
 
-adminRouter.post('/add-admin', authMiddleware, roleMiddleware(['super_admin']), addAdmin);
+adminRouter.post('/add-admin', authValidator, roleMiddleware(['super_admin']), addAdmin);
 
-adminRouter.get('/users', authMiddleware, roleMiddleware(['super_admin', 'admin']), getAllUsers);
+adminRouter.get('/users', authValidator, roleMiddleware(['super_admin', 'admin']), getAllUsers);
 
-adminRouter.get('/requests', authMiddleware, roleMiddleware(['admin', 'super_admin']), getRequests);
+adminRouter.get('/requests', authValidator, roleMiddleware(['admin', 'super_admin']), getUserRequests);
 
 module.exports = adminRouter;

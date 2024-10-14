@@ -13,8 +13,10 @@ const authValidator = async (req, res, next) => {
         req.user = await UserModel.findById(decoded.id).select('-password');
         next();
     } catch (error) {
+        console.error(error);
         res.status(401).json({ message: 'Unauthorized' });
     }
+    
 };
 
 const roleMiddleware = (roles) => {

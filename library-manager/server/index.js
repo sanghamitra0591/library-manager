@@ -5,17 +5,29 @@ const requestRouter = require("./routes/request-route");
 const adminRouter = require("./routes/admin-route");
 const bookRouter = require("./routes/book-route");
 
-require("dotenv").config()
+require("dotenv").config();
 
 const app = express();
 
 app.use(express.json());
 
+const cors= require("cors");
+app.use(cors({
+    origin: "*"
+}))
+
+app.get("/", async(req, res)=>{
+    try {
+        res.send("Welcome To Library Manager");
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 app.use('/api/auth', authRouter);
 app.use('/api/books', bookRouter);
 app.use('/api/requests', requestRouter);
 app.use('/api/admin', adminRouter);
-
 
 
 app.listen(process.env.port, async() => {

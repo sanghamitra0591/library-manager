@@ -1,14 +1,14 @@
 const express = require('express');
-const { createRequest, handleRequest, getUserRequests, getUserTakenBooks } = require('../controllers/request-controller');
-const { authMiddleware, roleMiddleware } = require('../middlewares/auth-validator-middleware');
+const { createRequest, handleRequest, getUserRequests, getAllRequests } = require('../controllers/request-controller');
+const { authValidator, roleMiddleware } = require('../middlewares/auth-validator-middleware');
 const requestRouter = express.Router();
 
-requestRouter.post('/', authMiddleware, createRequest);
+requestRouter.post('/', authValidator, roleMiddleware(['user']), createRequest);
 
-requestRouter.post('/handle', authMiddleware, handleRequest);
+requestRouter.post('/handle', authValidator, roleMiddleware(['admin']), handleRequest);
 
-requestRouter.get('/my-requests', authMiddleware, getUserRequests);
+requestRouter.get('/my-requests', authValidator, roleMiddleware(['user']), getUserRequests);
 
-requestRouter.get('/my-taken-books', authMiddleware, getUserTakenBooks);
+requestRouter.get('/all-requests', authValidator, roleMiddleware(['admin']), getAllRequests);
 
 module.exports = requestRouter;

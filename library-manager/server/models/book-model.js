@@ -9,6 +9,10 @@ const bookSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    publishYear: {
+        type: String,
+        required: true
+    },
     category: {
         type: String,
         required: true

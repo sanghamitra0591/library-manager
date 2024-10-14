@@ -16,6 +16,14 @@ const requestSchema = mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  requestAccepted: {
+    type: Date,
+    required: false
+  },
+  expectedReturnDate: {
+    type: Date,
+    required: false
+  },
   status: {
     type: String,
     enum: ['pending', 'accepted', 'declined'],
@@ -23,12 +31,17 @@ const requestSchema = mongoose.Schema({
   },
   returnDate: {
     type: Date,
-    required: false
+    required: false,
+    default: ""
   },
   penalty: {
     type: Number,
     default: 0
   },
+  category: {
+    type: String,
+    required: true
+  }
 });
 const RequestModel = mongoose.model('Request', requestSchema);
 
