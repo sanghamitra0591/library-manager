@@ -1,3 +1,71 @@
 .BooksWrapper{
+    width: 85%;
+    margin: auto;
     padding-top: 100px;
+}
+.bookButtonsWrapper{
+    padding: 20px 0px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.bookButtonsWrapper>select{
+    width: 300px;
+    padding: 10px;
+    font-size: 17px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 0px 5px;
+    background-color: rgb(247, 244, 244);
+}
+.bookButtonsWrapper>div>input{
+    width: 400px;
+    padding: 10px;
+    font-size: 17px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 0px 5px;
+}
+.bookButtonsWrapper>div>button, .bookButtonsWrapper>button{
+    padding: 10px 15px;
+    font-size: 17px;
+    border: none;
+    outline: none;
+    background-color: #fa0249;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    margin: 0px 5px;
+}
+.allBooksHolder{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.bookCardWrapper{
+    padding: 20px;
+    text-align: center;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+.bookCardWrapper>button{
+    padding: 10px 15px;
+    font-size: 17px;
+    border: none;
+    outline: none;
+    background-color: #fa0249;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    margin: 0px 5px;
+    cursor: pointer;
+}
+.bookCardWrapper>button:hover{
+    background-color: #bd0035;
+}
+.bookCardWrapper>button:disabled{
+    background-color: #d16584;
+    cursor: not-allowed;
 }

@@ -1,0 +1,91 @@
+.RequestsWrapper {
+    padding-top: 100px;
+    width: 85%;
+    margin: auto;
+}
+
+.requestCardsWrapper {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 40px;
+}
+
+.requestCard {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    gap: 20px;
+}
+.requestCard>h3{
+    font-size: 30px;
+    font-weight: 600;
+}
+.requestCardDataHolder{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.requestCardBooksDetails{
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.requestCardUserDetails {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+.requestCardButtonsHolder {
+    width: 30%;
+    margin: 20px auto;
+    place-content: center;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+}
+
+.requestCardButtonsHolder>button {
+    width: 300px;
+    padding: 10px 0px;
+    font-size: 17px;
+    border: none;
+    outline: none;
+    color: #000;
+    font-weight: 600;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.requestCardButtonsHolder>button:nth-child(1) {
+    background-color: rgb(84, 223, 84);
+}
+
+.requestCardButtonsHolder>button:nth-child(2) {
+    background-color: rgb(255, 91, 91);
+}
+
+.requestCardButtonsHolder>button:nth-child(1):hover {
+    background-color: rgb(7, 218, 7);
+}
+
+.requestCardButtonsHolder>button:nth-child(2):hover {
+    background-color: rgb(255, 21, 21);
+}
+
+.requestCardButtonsHolder>button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+.requestCardButtonsHolder>button:disabled:hover {
+    background-color: gray;
+}

@@ -59,7 +59,7 @@ export const searchBooksThunk = createAsyncThunk(
 export const requestBookThunk = createAsyncThunk(
     'books/requestBook',
     async (bookId, { rejectWithValue }) => {
-        const token = Cookies.get('authToken'); // Get token from cookies
+        const token = Cookies.get('authToken');
         try {
             const response = await fetch(`${BaseURL}/api/requests`, {
                 method: 'POST',
@@ -81,6 +81,33 @@ export const requestBookThunk = createAsyncThunk(
     }
 );
 
+export const createBookThunk = createAsyncThunk(
+    'books/createBook',
+    async (bookData, { rejectWithValue }) => {
+        const token = Cookies.get('authToken');
+        try {
+            const response = await fetch(`${BaseURL}/api/books`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bookData),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                return rejectWithValue(errorData.message);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 
 const booksSlice = createSlice({
     name: "books",
@@ -91,7 +118,7 @@ const booksSlice = createSlice({
                 if (action.payload === 'title') {
                     return a.title.localeCompare(b.title);
                 }
-                return a.publishYear - b.publishYear; // Sorting by publish year
+                return a.publishYear - b.publishYear;
             });
         },
         filterBooks(state, action) {
@@ -119,11 +146,21 @@ const booksSlice = createSlice({
                 state.error = action.payload;
             })
             .addCase(requestBookThunk.fulfilled, (state, action) => {
+                state.loading = false;
                 console.log('Book request successful:', action.payload);
             })
             .addCase(requestBookThunk.rejected, (state, action) => {
+                state.loading = false;
                 console.error('Book request failed:', action.payload);
-            });
+                state.error = action.payload;
+            })
+            .addCase(createBookThunk.fulfilled, (state, action) => {
+                state.loading = false;
+            })
+            .addCase(createBookThunk.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
     },
 });
 

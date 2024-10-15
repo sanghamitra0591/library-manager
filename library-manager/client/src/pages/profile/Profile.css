@@ -1,36 +1,108 @@
-
-.profileWrapper{
-    border: 1px solid black;
+.profileWrapper {
     width: 90%;
+    height: 88vh;
     margin: auto;
-    display: flex;
-    justify-content: space-between;
     padding-top: 100px;
 }
-.profileSettings{
-    border: 1px solid black;
+
+.profileContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    box-sizing: border-box;
+}
+
+.profileSettings {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     padding: 0px 20px;
     width: 25%;
 }
-.profileSettings>div{
-    border: 1px solid black;
+
+.profileSettings>div {
+    border: 1px solid grey;
     margin: 20px auto;
     padding: 0px 10px;
 }
-.profileSettings>div>p{
+
+.profileSettings>div:last-child {
+    border: none;
+    padding: 0px;
+}
+
+.profileSettings>div>p {
     font-size: 22px;
     font-weight: bold;
 }
-.profileSettings>div>button{
+
+.profileSettings>div>button {
     width: 100%;
     border: none;
-    padding: 20px 0px;
+    padding: 20px 20px;
     background-color: #fa0249;
     color: #DDE6ED;
     font-size: 22px;
     font-weight: bold;
 }
-.profileSettings>div>button:hover{
+
+.profileSettings>div>button:hover {
     background-color: #af0032;
     cursor: pointer;
+}
+
+.profileContentHolder {
+    width: 70%;
+    box-shadow: rgba(28, 29, 31, 0.3) 0px 1px 2px 0px, rgba(28, 29, 31, 0.15) 0px 2px 6px 2px;
+    padding: 0px 20px;
+}
+
+.showRequests {
+    display: block;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 10px;
+}
+
+.hideRequests {
+    display: none;
+}
+
+.showAcceptedRequests {
+    display: block;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 10px;
+}
+
+.hideAcceptedRequests {
+    display: none;
+}
+
+.showDeclinedRequests {
+    display: block;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 10px;
+}
+
+.hideDeclinedRequests {
+    display: none;
+}
+
+.showReturnededRequests {
+    display: block;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 10px;
+}
+
+.hideReturnedRequests {
+    display: none;
 }

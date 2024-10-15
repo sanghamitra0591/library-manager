@@ -1,0 +1,26 @@
+.profileBookCardWrapper{
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    padding-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.statusProfileBookCard{
+    width: 30%;
+    margin: auto;
+    padding: 10px 5px;
+    font-size: 18px;
+    border-radius: 5px;
+    color: #fff;
+}
+.profileBookCardWrapper>div{
+    place-content: center;
+    display: flex;
+    gap: 10px;
+}
+.profileBookCardWrapper>div>p{
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    color: #000000;
+}

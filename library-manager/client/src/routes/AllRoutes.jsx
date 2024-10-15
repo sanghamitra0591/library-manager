@@ -6,16 +6,24 @@ import Login from '../pages/login/Login'
 import Signup from '../pages/signup/Signup'
 import CreateAdmin from '../pages/createAdmin/CreateAdmin'
 import Profile from '../pages/profile/Profile'
+import CreateBook from '../pages/createBook/CreateBook'
+import Requests from '../pages/requests/Request'
+import NotAuthorized from '../pages/notAuthorized/NotAuthorized'
+import PrivateRoute from './PrivateRoute'
 
 const AllRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/profile" element={<Profile />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
-            <Route path="/createadmin" element={<CreateAdmin />}></Route>
-            <Route path="/books" element={<Books />}></Route>
+            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>}></Route>
+            <Route path="/createadmin" element={<PrivateRoute><CreateAdmin /></PrivateRoute>}></Route>
+            <Route path="/books" element={<PrivateRoute><Books /></PrivateRoute>}></Route>
+            <Route path="/addbook" element={<PrivateRoute><CreateBook /></PrivateRoute>} />
+            <Route path="/requests" element={<Requests />}></Route>
+            {/* <Route path="/requests" element={<PrivateRoute><Requests /></PrivateRoute>}></Route> */}
+            <Route path="/noaccess" element={<NotAuthorized />}></Route>
         </Routes>
     )
 }

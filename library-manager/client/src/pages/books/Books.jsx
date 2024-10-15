@@ -3,9 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooksThunk, searchBooksThunk, sortBooks, requestBookThunk } from '../../slices/BookSlice';
 import "./Books.css"
+import { useNavigate } from 'react-router-dom';
 
 const Books = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { currentUser } = useSelector(state => state.auth);
   const { books, loading, error } = useSelector(state => state.books);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -16,6 +19,8 @@ const Books = () => {
   const handleSearch = () => {
     if (searchTerm) {
       dispatch(searchBooksThunk(searchTerm));
+    } else if (searchTerm === "") {
+      dispatch(fetchBooksThunk())
     }
   };
 
@@ -28,35 +33,40 @@ const Books = () => {
   };
 
   return (
-    <div>
-      <h1>Books</h1>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search books by title"
-      />
-      <button onClick={handleSearch}>Search</button>
+    <div className='BooksWrapper'>
+      <div className='bookButtonsWrapper'>
+        <select onChange={(e) => handleSort(e.target.value)}>
+          <option value="title">Sort by Title</option>
+          <option value="publishYear">Sort by Publish Year</option>
+        </select>
+        <div>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search books by title"
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
 
-      <select onChange={(e) => handleSort(e.target.value)}>
-        <option value="title">Sort by Title</option>
-        <option value="publishYear">Sort by Publish Year</option>
-      </select>
+        {currentUser?.role === "admin" && <button onClick={() => navigate("/addbook")}>Add Book</button>}
+      </div>
 
-      {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <ul>
-        {books.map(book => (
-          <li key={book._id}>
-            <h2>{book.title}</h2>
-            <p>Author: {book.author}</p>
-            <p>Published Year: {book.publishYear}</p>
-            <p>Category: {book.category}</p>
-            <p>Available Quantity: {book.quantity}</p>
-            <button onClick={() => handleRequest(book._id)}>Request Book</button>
-          </li>
-        ))}
-      </ul>
+      {loading ? <p>Loading...</p> :
+        <div className='allBooksHolder'>
+          {books.map(book => (
+            <div key={book._id} className='bookCardWrapper'>
+              <h2>{book.title}</h2>
+              <p>Author: {book.author}</p>
+              <p>Published Year: {book.publishYear}</p>
+              <p>Category: {book.category}</p>
+              <h4>Available Quantity: {book.quantity}</h4>
+              {currentUser?.role !== "admin" && <button disabled={book.quantity<=0} onClick={() => handleRequest(book._id)}>{book.quantity > 0 ? "Request Book" : "Not Available"}</button>}
+            </div>
+          ))}
+        </div>
+      }
     </div>
   );
 };
