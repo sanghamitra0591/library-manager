@@ -4,23 +4,40 @@
     margin: auto;
 }
 
-.requestCardsWrapper {
-    padding: 40px;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 40px;
-}
-
 .requestCard {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 20px;
+}
+.requestCardTime{
+    width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.requestCardTime>h3{
+    width: 150px;
+    font-size: 25px;
+    font-weight: 600;
+    margin: 0px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 50px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}.requestCardTime>p{
+    width: 150px;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 50px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+.requestCardContainer{
     text-align: center;
     display: flex;
     gap: 20px;
-}
-.requestCard>h3{
-    font-size: 30px;
-    font-weight: 600;
 }
 .requestCardDataHolder{
     width: 90%;
@@ -91,14 +108,40 @@
 }
 
 .requestTabHeaderWrapper{
-    width: 100%;
-    border: 1px solid black;
+    width: 95%;
+    margin: auto;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    border-radius: 20px;
+    padding: 5px;
 }
-.requestTabHeaderWrapper>div{
-    border: 1px solid black;
+
+.requestTabHeaderWrapper>div>p{
+    font-size: 18px;
+    font-weight: 600;
+}
+.requestTabHeader{
+    border: none;
     width: 25%;
+    border-radius: 20px;
+}
+
+.requestTabHeaderSelected{
+    border: none;
+    background-color: #fa0249;
+    width: 25%;
+    border-radius: 20px;
+}
+
+.pendingRequestCardsWrapper, .acceptedRequestCardsWrapper, .declinedRequestCardsWrapper, .allRequestCardsWrapper {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 40px;
+}
+.hidePendingrequestCardsWrapper, .hideAcceptedrequestCardsWrapper, .hideDeclinedrequestCardsWrapper, .hideAllrequestCardsWrapper{
+    display: none;
 }

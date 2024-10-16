@@ -26,7 +26,7 @@ export const fetchRequestsThunk = createAsyncThunk(
                 return rejectWithValue(errorData.message);
             }
             const data = await response.json();
-            return data;
+            return data.reverse();
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -52,6 +52,32 @@ export const handleRequestThunk = createAsyncThunk(
             }
             const data = await response.json();
             return data; // Return the updated request
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+
+export const returnRequestThunk = createAsyncThunk(
+    'requests/returnRequest',
+    async ({ requestId, status }, { rejectWithValue }) => {
+        try {
+            const token = Cookies.get('authToken');
+            const response = await fetch(`${BaseURL}/api/requests/return`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ requestId, status }),
+            });
+            if (!response.ok) {
+                const errorData = await response.json();
+                return rejectWithValue(errorData.message);
+            }
+            const data = await response.json();
+            return data;
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -101,6 +127,16 @@ const requestsSlice = createSlice({
                 state.error = action.payload;
             })
             .addCase(handleRequestThunk.fulfilled, (state, action) => {
+                const updatedRequest = action.payload;
+                const index = state.requests.findIndex(req => req._id === updatedRequest._id);
+                if (index !== -1) {
+                    state.requests[index] = updatedRequest;
+                }
+            })
+            .addCase(returnRequestThunk.rejected, (state, action) => {
+                state.error = action.payload;
+            })
+            .addCase(returnRequestThunk.fulfilled, (state, action) => {
                 const updatedRequest = action.payload;
                 const index = state.requests.findIndex(req => req._id === updatedRequest._id);
                 if (index !== -1) {

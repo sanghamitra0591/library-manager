@@ -1,29 +1,69 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./ProfileBookCard.css"
+import { useDispatch } from 'react-redux';
+import { returnRequestThunk } from '../../slices/RequestSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileBookCard = ({ props }) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+
     const request = props;
+
+    const [loading, setLoading] = useState(false);
+
     const convertTime = (data) => {
-        const date = new Date(data)
-        const displayDate = `${String(date.getUTCDate()).padStart(2, '0')}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${String(date.getUTCFullYear()).slice(-2)} ${String(date.getUTCHours()).padStart(2, '0')}:${String(date.getUTCMinutes()).padStart(2, '0')}`;
-        return displayDate;
+        const date = new Date(data);
+
+        const istOffset = 5.5 * 60 * 60 * 1000;
+        const istDate = new Date(date.getTime() + istOffset);
+
+        const day = String(istDate.getUTCDate()).padStart(2, '0');
+        const month = istDate.toLocaleString('default', { month: 'short' }).toLowerCase();
+        const year = istDate.getUTCFullYear(); // Get full year
+        const hours = String(istDate.getUTCHours() % 12 || 12).padStart(2, '0');
+        const minutes = String(istDate.getUTCMinutes()).padStart(2, '0');
+        const ampm = istDate.getUTCHours() >= 12 ? 'pm' : 'am';
+    
+        const displayDate = `${day}-${month}-${year} ${hours}:${minutes}${ampm}`;
+    
+        return displayDate
+    };
+    
+
+    const handleReturn = async(e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        const action = await dispatch(returnRequestThunk({ requestId: request._id, status: "returned" }));
+
+        if (returnRequestThunk.rejected.match(action)) {
+            setLoading(false);
+            alert("Return Unsuccessful")
+        } else {
+            setLoading(false);
+            alert("Return Successful")
+        }
     }
 
     return (
         <div className="profileBookCardWrapper">
-            <h3>{request.bookId?.title}</h3>
-            <p>Published Year: {request.bookId?.publishYear}</p>
-            <p>Category: {request.bookId?.category}</p>
-            <p>Request Time: {convertTime(request.requestDate)}</p>
-            {request.requestAccepted && <p>Accepted Time: {convertTime(request.requestAccepted)}</p>}
-            {request.expectedReturnDate && <p>Return Before: {convertTime(request.expectedReturnDate)}</p>}
-            {request.status === "pending" && <p style={{ backgroundColor: "orange" }} className='statusProfileBookCard'>{request.status}</p>}
-            {request.status === "accepted" && <div>
-                <p style={{ backgroundColor: "#6ce678" }}>{request.status}</p>
-                <p style={{ backgroundColor: "#f5b342" }}>return</p>
-            </div>}
-            {request.status === "declined" && <p style={{ backgroundColor: "red" }} className='statusProfileBookCard'>{request.status}</p>}
-            {request.status === "returned" && <p style={{ backgroundColor: "grey" }} className='statusProfileBookCard'>{request.status}</p>}
+            {request.status === "pending" && <img className="overlay" src='https://static.thenounproject.com/png/3044640-200.png' alt="watermark" />}
+            {request.status === "accepted" && <img className="overlay" src='https://cdn-icons-png.flaticon.com/256/33/33281.png' alt="watermark" />}
+            {request.status === "declined" && <img className="overlay" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGh5SHl9F0E9W9XMmZp5memqOdQ8tLApQcpw&s' alt="watermark" />}
+            <div className="content">
+                <h3>{request.bookId?.title}</h3>
+                <p>Published Year: {request.bookId?.publishYear}</p>
+                <p>Category: {request.bookId?.category}</p>
+                <p>Request Time: {convertTime(request.requestDate)}</p>
+                <p>Penalty: {request.penalty}</p>
+                {request.requestAccepted && <p>Accepted Time: {convertTime(request.requestAccepted)}</p>}
+                {request.expectedReturnDate && <p className={request.returnDate? '' : 'returnDate'}>Return Before: {convertTime(request.expectedReturnDate)}</p>}
+                {request.returnDate && <p>Return Date: {convertTime(request.returnDate)}</p>}
+                {request.status === "accepted" && <div>
+                    <p onClick={handleReturn} style={{ backgroundColor: "#fa0249" }}>{loading ? "Returning..." : "Return"}</p>
+                </div>}
+            </div>
         </div>
     )
 }

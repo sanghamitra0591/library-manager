@@ -48,7 +48,7 @@
     font-weight: bold;
 }
 
-.profileSettings>div>button:hover {
+.profileSettings>div>button:hover, .logoutButtonConatiner>button:hover {
     background-color: #af0032;
     cursor: pointer;
 }
@@ -56,7 +56,40 @@
 .profileContentHolder {
     width: 70%;
     box-shadow: rgba(28, 29, 31, 0.3) 0px 1px 2px 0px, rgba(28, 29, 31, 0.15) 0px 2px 6px 2px;
-    padding: 0px 20px;
+    padding: 10px;
+    height: 100%;
+    overflow: auto;
+}
+
+.showProfileSettings {
+    width: 100%;
+    margin: auto;
+    position: relative;
+}
+
+.showProfileSettings>img:nth-child(1) {
+    width: 100%;
+    height: 300px;
+    margin: auto;
+}
+
+.showProfileSettings>img:nth-child(2) {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    margin: auto;
+    position: absolute;
+    right: 5%;
+    top: 30%;
+    border: 5px solid white;
+}
+
+.showProfile {
+    display: block;
+}
+
+.hideProfile {
+    display: none;
 }
 
 .showRequests {
@@ -84,7 +117,6 @@
 }
 
 .showDeclinedRequests {
-    display: block;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
@@ -96,7 +128,6 @@
 }
 
 .showReturnededRequests {
-    display: block;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
@@ -105,4 +136,63 @@
 
 .hideReturnedRequests {
     display: none;
+}
+
+.profileDetailsContainer {
+    width: 95%;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.profileDetailsContainer>h2 {
+    color: #27374D;
+    margin: 1rem auto 4rem auto;
+}
+
+.profileDetailsContainer>div {
+    margin: 30px 0px;
+}
+
+.userNameContainer,
+.emailContainer,
+.penaltyContainer {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.emailContainer{
+    gap: 45px;
+}
+.penaltyContainer{
+    gap: 30px;
+}
+
+.userNameContainer>input,
+.emailContainer>input,
+.penaltyContainer>input {
+    background: none;
+    padding: 8px;
+    width: 300px;
+    font-size: 18px;
+    height: 25px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid black;
+}
+
+.logoutButtonConatiner {
+    width:45%;
+    text-align: center;
+}
+
+.logoutButtonConatiner>button {
+    width: 50%;
+    padding: 10px 20px;
+    border: none;
+    background-color: #fa0249;
+    color: #DDE6ED;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 10px;
 }

@@ -5,6 +5,8 @@ import { fetchUserRequestsThunk } from '../../slices/RequestSlice';
 import { resetUser } from '../../slices/AuthSlice';
 import { useNavigate } from 'react-router-dom';
 import ProfileBookCard from '../../components/profileBookCard/ProfileBookCard';
+import Loader from '../../components/loader/Loader';
+import NoResult from '../../components/noResult/NoResult';
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -17,7 +19,7 @@ const Profile = () => {
         if (tab !== "none") {
             dispatch(fetchUserRequestsThunk(tab));
         }
-    }, [dispatch, tab]);
+    }, [tab]);
 
     const handleLogout = () => {
         dispatch(resetUser());
@@ -49,33 +51,57 @@ const Profile = () => {
                 </div>
                 <div className='profileContentHolder'>
                     {error && <p>{error}</p>}
-                    {loading && <p>Loading...</p>}
-                    {!loading && !error &&
+                    {loading && <Loader />}
+                    {!loading && !error && <div className={tab === "none" ? "showProfile" : "hideProfile"}><div className="showProfileSettings">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIudtTcOnMdwrWvu8IugZnHqEyiCSq4NYu1A&s" alt="" />
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSixWENwTZdvqJbo7WMo7JJX4yBrk5Mif_bxg&s" alt="userAvatar" />
+                    </div>
+                        <div className='profileDetailsContainer'>
+                            <h2>Hello {currentUser.username}!</h2>
+                            <div className='userNameContainer'>
+                                <label>Username:</label>
+                                <input type="text" value={currentUser.username} readOnly />
+                            </div>
+                            <div className='emailContainer'>
+                                <label>Email:</label>
+                                <input type="email" value={currentUser.email} readOnly />
+                            </div>
+                            {currentUser.role==="user" && <div className='penaltyContainer'>
+                                <label>Penalty:</label>
+                                <input type="email" value={currentUser.penalties} readOnly />
+                            </div>}
+                            <div className='logoutButtonConatiner'>
+                                <button onClick={() => handleLogout()}>Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    {!loading && !error && currentUser.role==="user" &&
                         <div className={tab === "pending" ? "showRequests" : "hideRequests"}>
-                            {userRequests.length > 0 && userRequests.map(request => (
+                            {userRequests.length > 0 ? userRequests.map(request => (
                                 <ProfileBookCard key={request._id} props={request} />
-                            ))}
+                            )) : <NoResult />}
                         </div>
                     }
-                    {!loading && !error &&
+                    {!loading && !error && currentUser.role==="user" &&
                         <div className={tab === "accepted" ? "showAcceptedRequests" : "hideAcceptedRequests"}>
-                            {userRequests.length > 0 && userRequests.map(request => (
+                            {userRequests.length > 0 ? userRequests.map(request => (
                                 <ProfileBookCard key={request._id} props={request} />
-                            ))}
+                            )) : <NoResult />}
                         </div>
                     }
-                    {!loading && !error &&
+                    {!loading && !error && currentUser.role==="user" &&
                         <div className={tab === "declined" ? "showDeclinedRequests" : "hideDeclinedRequests"}>
-                            {userRequests.length > 0 && userRequests.map(request => (
+                            {userRequests.length > 0 ? userRequests.map(request => (
                                 <ProfileBookCard key={request._id} props={request} />
-                            ))}
+                            )) : <NoResult />}
                         </div>
                     }
-                    {!loading && !error &&
+                    {!loading && !error && currentUser.role==="user" &&
                         <div className={tab === "returned" ? "showReturnededRequests" : "hideReturnedRequests"}>
-                            {userRequests.length > 0 && userRequests.map(request => (
+                            {userRequests.length > 0 ? userRequests.map(request => (
                                 <ProfileBookCard key={request._id} props={request} />
-                            ))}
+                            )) : <NoResult />}
                         </div>
                     }
                 </div>

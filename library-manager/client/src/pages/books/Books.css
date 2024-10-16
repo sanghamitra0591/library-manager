@@ -1,7 +1,7 @@
 .BooksWrapper{
     width: 85%;
     margin: auto;
-    padding-top: 100px;
+    padding: 100px 0px 30px 0px;
 }
 .bookButtonsWrapper{
     padding: 20px 0px;

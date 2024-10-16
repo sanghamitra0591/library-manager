@@ -1,0 +1,11 @@
+.noResultsWrapper{
+    width: 200%;
+    margin: auto;
+    text-align: center;
+    place-content: center;
+}
+.noResultsWrapper>img{
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+}

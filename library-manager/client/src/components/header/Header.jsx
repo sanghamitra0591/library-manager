@@ -12,7 +12,7 @@ const Header = () => {
         <div>
           <Link to="/books">Books</Link>
           {currentUser?.role==="admin" && <Link to="/requests">Requests</Link>}
-          <Link>About</Link>
+          <Link to="/about">About</Link>
           {userLoggedIn ? <Link to={"/profile"}>
             Profile
           </Link> :

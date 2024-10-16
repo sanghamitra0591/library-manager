@@ -139,22 +139,33 @@ const booksSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
+            .addCase(searchBooksThunk.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
             .addCase(searchBooksThunk.fulfilled, (state, action) => {
                 state.books = action.payload;
+                state.loading = false;
             })
             .addCase(searchBooksThunk.rejected, (state, action) => {
                 state.error = action.payload;
-            })
-            .addCase(requestBookThunk.fulfilled, (state, action) => {
                 state.loading = false;
-                console.log('Book request successful:', action.payload);
+            })
+            .addCase(requestBookThunk.pending, (state) => {
+                state.error = null;
+            })
+            .addCase(requestBookThunk.fulfilled, (state) => {
+                state.loading = false;
             })
             .addCase(requestBookThunk.rejected, (state, action) => {
                 state.loading = false;
-                console.error('Book request failed:', action.payload);
                 state.error = action.payload;
             })
-            .addCase(createBookThunk.fulfilled, (state, action) => {
+            .addCase(createBookThunk.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(createBookThunk.fulfilled, (state) => {
                 state.loading = false;
             })
             .addCase(createBookThunk.rejected, (state, action) => {
