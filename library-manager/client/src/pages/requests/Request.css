@@ -89,3 +89,16 @@
 .requestCardButtonsHolder>button:disabled:hover {
     background-color: gray;
 }
+
+.requestTabHeaderWrapper{
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+.requestTabHeaderWrapper>div{
+    border: 1px solid black;
+    width: 25%;
+}
