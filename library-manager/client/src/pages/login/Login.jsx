@@ -5,6 +5,7 @@ import { loginUserThunk, setUser } from "../../slices/AuthSlice"
 import Cookies from 'js-cookie';
 import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Login = () => {
             const { token } = action.payload;
             Cookies.set('authToken', token, { expires: 7, secure: true });
             setLoading(false);
-            alert("Successfully Logged In")
+            toast.success("Successfully Logged In")
             dispatch(setUser(action.payload.user))
             navigate("/")
         }

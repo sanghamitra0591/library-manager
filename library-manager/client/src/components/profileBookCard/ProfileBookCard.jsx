@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
 import "./ProfileBookCard.css"
 import { useDispatch } from 'react-redux';
-import { returnRequestThunk } from '../../slices/RequestSlice';
-import { useNavigate } from 'react-router-dom';
 
-const ProfileBookCard = ({ props }) => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate()
+const ProfileBookCard = ({ props, onReturn }) => {
 
     const request = props;
 
@@ -24,27 +20,17 @@ const ProfileBookCard = ({ props }) => {
         const hours = String(istDate.getUTCHours() % 12 || 12).padStart(2, '0');
         const minutes = String(istDate.getUTCMinutes()).padStart(2, '0');
         const ampm = istDate.getUTCHours() >= 12 ? 'pm' : 'am';
-    
+
         const displayDate = `${day}-${month}-${year} ${hours}:${minutes}${ampm}`;
-    
+
         return displayDate
     };
-    
 
-    const handleReturn = async(e) => {
+
+    const handleReturn = (e) => {
         e.preventDefault();
-        setLoading(true);
-
-        const action = await dispatch(returnRequestThunk({ requestId: request._id, status: "returned" }));
-
-        if (returnRequestThunk.rejected.match(action)) {
-            setLoading(false);
-            alert("Return Unsuccessful")
-        } else {
-            setLoading(false);
-            alert("Return Successful")
-        }
-    }
+        onReturn(request._id); 
+    };
 
     return (
         <div className="profileBookCardWrapper">
@@ -58,11 +44,15 @@ const ProfileBookCard = ({ props }) => {
                 <p>Request Time: {convertTime(request.requestDate)}</p>
                 <p>Penalty: {request.penalty}</p>
                 {request.requestAccepted && <p>Accepted Time: {convertTime(request.requestAccepted)}</p>}
-                {request.expectedReturnDate && <p className={request.returnDate? '' : 'returnDate'}>Return Before: {convertTime(request.expectedReturnDate)}</p>}
+                {request.expectedReturnDate && <p className={request.returnDate ? '' : 'returnDate'}>Return Before: {convertTime(request.expectedReturnDate)}</p>}
                 {request.returnDate && <p>Return Date: {convertTime(request.returnDate)}</p>}
-                {request.status === "accepted" && <div>
-                    <p onClick={handleReturn} style={{ backgroundColor: "#fa0249" }}>{loading ? "Returning..." : "Return"}</p>
-                </div>}
+                {request.status === "accepted" && (
+                <div>
+                    <button onClick={handleReturn} style={{ backgroundColor: "#fa0249" }} disabled={loading}>
+                        {loading ? "Returning..." : "Return"}
+                    </button>
+                </div>
+            )}
             </div>
         </div>
     )

@@ -1,24 +1,35 @@
-
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooksThunk, searchBooksThunk, sortBooks, requestBookThunk } from '../../slices/BookSlice';
-import "./Books.css"
+import "./Books.css";
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../components/loader/Loader';
 import NoResultFull from '../../components/noResult-full/NoResultFull';
+import { toast } from 'react-toastify';
+import { fetchUserRequestsThunk } from '../../slices/RequestSlice';
 
 const Books = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { currentUser } = useSelector(state => state.auth);
   const { books, loading, error } = useSelector(state => state.books);
+  const { userRequests } = useSelector(state => state.requests);
   const [searchTerm, setSearchTerm] = useState('');
   const [requestLoading, setRequestLoading] = useState(false);
   const [searchLoading, setSearchLoading] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchBooksThunk());
+    const fetchBooksAndRequests = async () => {
+      await dispatch(fetchBooksThunk());
+      await dispatch(fetchUserRequestsThunk());
+    };
+
+    fetchBooksAndRequests();
   }, [dispatch]);
+
+  const getRequestStatus = (bookId) => {
+    return userRequests[bookId]?.status || null; // Use bookId to access the request status
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -27,22 +38,20 @@ const Books = () => {
       const action = dispatch(searchBooksThunk(searchTerm));
       if (searchBooksThunk.rejected.match(action)) {
         setSearchLoading(false);
-        alert("Search failed");
+        toast.error("Search failed");
       } else {
         setSearchLoading(false);
       }
-    } else if (searchTerm === "") {
+    } else {
       const action = dispatch(fetchBooksThunk());
       if (fetchBooksThunk.rejected.match(action)) {
         setSearchLoading(false);
-        alert("Books Not Found");
+        toast.error("Books Not Found");
       } else {
         setSearchLoading(false);
       }
     }
   };
-
-  console.log({searchLoading})
 
   const handleSort = (sortBy) => {
     dispatch(sortBooks(sortBy));
@@ -54,10 +63,10 @@ const Books = () => {
 
     if (requestBookThunk.rejected.match(action)) {
       setRequestLoading(false);
-      alert("Request failed")
+      toast.error("Request failed");
     } else {
       setRequestLoading(false);
-      alert("Request sent");
+      toast.success("Request sent");
       dispatch(fetchBooksThunk());
     }
   };
@@ -87,16 +96,40 @@ const Books = () => {
       {error && <p>{error}</p>}
       {loading ? <Loader /> :
         <div className='allBooksHolder'>
-          {books.length > 0 ? books.map(book => (
-            <div key={book._id} className='bookCardWrapper'>
-              <h2>{book.title}</h2>
-              <p>Author: {book.author}</p>
-              <p>Published Year: {book.publishYear}</p>
-              <p>Category: {book.category}</p>
-              <h4>Available Quantity: {book.quantity}</h4>
-              {currentUser?.role !== "admin" && <button disabled={book.quantity <= 0} onClick={() => handleRequest(book._id)}>{book.quantity > 0 ? "Request Book" : "Not Available"}</button>}
-            </div>
-          )) : <NoResultFull />}
+          {books.length > 0 ? books.map(book => {
+            const requestStatus = getRequestStatus(book._id);
+            let buttonText = "Request Book";
+            let isDisabled = false;
+
+            // Determine button text and disable status based on request status
+            if (requestStatus === 'pending') {
+              buttonText = "Pending Request";
+              isDisabled = true;
+            } else if (requestStatus === 'accepted') {
+              buttonText = "Request Accepted";
+              isDisabled = true;
+            } else if (requestStatus === 'declined' || requestStatus === 'returned') {
+              buttonText = "Request Book"; // Reset button text for declined or returned
+            }
+
+            return (
+              <div key={book._id} className='bookCardWrapper'>
+                <h2>{book.title}</h2>
+                <p>Author: {book.author}</p>
+                <p>Published Year: {book.publishYear}</p>
+                <p>Category: {book.category}</p>
+                <h4>Available Quantity: {book.quantity}</h4>
+                {currentUser?.role === "user" && (
+                  <button 
+                    disabled={book.quantity <= 0 || isDisabled} // Disable if no quantity or pending/accepted request
+                    onClick={() => handleRequest(book._id)}
+                  >
+                    {buttonText}
+                  </button>
+                )}
+              </div>
+            );
+          }) : <NoResultFull />}
         </div>
       }
     </div>

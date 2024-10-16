@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import "./Profile.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserRequestsThunk } from '../../slices/RequestSlice';
+import { fetchUserRequestsThunk, returnRequestThunk } from '../../slices/RequestSlice';
 import { resetUser } from '../../slices/AuthSlice';
 import { useNavigate } from 'react-router-dom';
 import ProfileBookCard from '../../components/profileBookCard/ProfileBookCard';
 import Loader from '../../components/loader/Loader';
 import NoResult from '../../components/noResult/NoResult';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -25,6 +26,20 @@ const Profile = () => {
         dispatch(resetUser());
         navigate("/login")
     }
+
+    const handleReturnRequest = async (requestId) => {
+        const action = await dispatch(returnRequestThunk({ requestId, status: "returned" }));
+
+        if (returnRequestThunk.rejected.match(action)) {
+            toast.error("Return Unsuccessful");
+        } else {
+            toast.success("Return Successful");
+            if (tab !== "none") {
+                dispatch(fetchUserRequestsThunk(tab));
+            }
+        }
+    };
+
 
     return (
         <div className='profileWrapper'>
@@ -66,7 +81,7 @@ const Profile = () => {
                                 <label>Email:</label>
                                 <input type="email" value={currentUser.email} readOnly />
                             </div>
-                            {currentUser.role==="user" && <div className='penaltyContainer'>
+                            {currentUser.role === "user" && <div className='penaltyContainer'>
                                 <label>Penalty:</label>
                                 <input type="email" value={currentUser.penalties} readOnly />
                             </div>}
@@ -76,28 +91,29 @@ const Profile = () => {
                         </div>
                     </div>
                     }
-                    {!loading && !error && currentUser.role==="user" &&
+                    {!loading && !error && currentUser.role === "user" &&
                         <div className={tab === "pending" ? "showRequests" : "hideRequests"}>
                             {userRequests.length > 0 ? userRequests.map(request => (
                                 <ProfileBookCard key={request._id} props={request} />
                             )) : <NoResult />}
                         </div>
                     }
-                    {!loading && !error && currentUser.role==="user" &&
+                    {!loading && !error && currentUser.role === "user" &&
                         <div className={tab === "accepted" ? "showAcceptedRequests" : "hideAcceptedRequests"}>
                             {userRequests.length > 0 ? userRequests.map(request => (
-                                <ProfileBookCard key={request._id} props={request} />
+                                <ProfileBookCard key={request._id} props={request} onReturn={handleReturnRequest} />
                             )) : <NoResult />}
                         </div>
                     }
-                    {!loading && !error && currentUser.role==="user" &&
+
+                    {!loading && !error && currentUser.role === "user" &&
                         <div className={tab === "declined" ? "showDeclinedRequests" : "hideDeclinedRequests"}>
                             {userRequests.length > 0 ? userRequests.map(request => (
                                 <ProfileBookCard key={request._id} props={request} />
                             )) : <NoResult />}
                         </div>
                     }
-                    {!loading && !error && currentUser.role==="user" &&
+                    {!loading && !error && currentUser.role === "user" &&
                         <div className={tab === "returned" ? "showReturnededRequests" : "hideReturnedRequests"}>
                             {userRequests.length > 0 ? userRequests.map(request => (
                                 <ProfileBookCard key={request._id} props={request} />

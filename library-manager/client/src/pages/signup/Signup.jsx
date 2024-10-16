@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { signupUserThunk } from "../../slices/AuthSlice";
 import './Signup.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Signup = () => {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const Signup = () => {
             setError(action.payload);
             setLoading(false);
         }else{
-            alert("Created Account");
+            toast.success("Created Account");
             setLoading(false);
             navigate("/login");
         }

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { createBookThunk } from "../../slices/BookSlice";
 import './CreateBook.css';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const CreateBook = () => {
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const CreateBook = () => {
             setError(action.payload);
             setLoading(false);
         } else {
-            alert("Book created successfully");
+            toast.success("Book created successfully");
             setLoading(false);
             navigate("/books");
         }
