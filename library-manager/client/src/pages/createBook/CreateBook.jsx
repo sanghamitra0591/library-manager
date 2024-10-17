@@ -25,6 +25,7 @@ const CreateBook = () => {
         if (createBookThunk.rejected.match(action)) {
             setError(action.payload);
             setLoading(false);
+            toast.error("Book not created")
         } else {
             toast.success("Book created successfully");
             setLoading(false);

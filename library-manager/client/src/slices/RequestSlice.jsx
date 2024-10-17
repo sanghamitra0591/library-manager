@@ -89,7 +89,8 @@ export const fetchUserRequestsThunk = createAsyncThunk(
     async (status, { rejectWithValue }) => {
         try {
             const token = Cookies.get('authToken');
-            const response = await fetch(`${BaseURL}/api/requests/my-requests?status=${status}`, {
+            const endUrl= status? `/api/requests/my-requests?status=${status}` : `/api/requests/my-requests`
+            const response = await fetch(`${BaseURL}${endUrl}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

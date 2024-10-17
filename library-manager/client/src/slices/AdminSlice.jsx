@@ -1,4 +1,3 @@
-// AdminSlicer.jsx
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie';
 
@@ -35,6 +34,33 @@ export const fetchAdminsThunk = createAsyncThunk(
     }
 );
 
+// New thunk for adding an admin
+export const addAdminThunk = createAsyncThunk(
+    'admins/addAdmin',
+    async ({ username, email, password, category }, { rejectWithValue }) => {
+        try {
+            const token = Cookies.get('authToken');
+            const response = await fetch(`${BaseURL}/api/admin/add-admin`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, email, password, category }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                return rejectWithValue(errorData.message);
+            }
+
+            return await response.json(); // Return the success response if needed
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 const adminSlice = createSlice({
     name: "admins",
     initialState,
@@ -50,6 +76,19 @@ const adminSlice = createSlice({
                 state.loading = false;
             })
             .addCase(fetchAdminsThunk.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+            .addCase(addAdminThunk.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(addAdminThunk.fulfilled, (state, action) => {
+                state.loading = false;
+                // Optionally add the new admin to the admins array
+                state.admins.push(action.payload);
+            })
+            .addCase(addAdminThunk.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             });
