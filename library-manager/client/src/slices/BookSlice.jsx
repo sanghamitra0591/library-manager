@@ -74,7 +74,7 @@ export const requestBookThunk = createAsyncThunk(
                 return rejectWithValue(errorData.message);
             }
             const data = await response.json();
-            return data; // Return the created request data
+            return data;
         } catch (error) {
             return rejectWithValue(error.message);
         }
