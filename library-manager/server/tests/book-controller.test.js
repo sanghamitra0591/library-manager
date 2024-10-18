@@ -12,6 +12,7 @@ var userToken;
 describe('Auth Controller', () => {
     beforeAll(async () => {
         process.env.JWT_SECRET = 'test_secret';
+        await closeServer();
         await startServer();
     });
 
@@ -22,7 +23,6 @@ describe('Auth Controller', () => {
     afterEach(async () => {
         await closeServer();
     });
-
 
     afterAll(async () => {
         await closeServer();
@@ -671,6 +671,7 @@ describe('Request Controller', () => {
         expect(returnRes.body.status).toBe("returned");
     });
 });
+
 
 describe('Category Controller', () => {
     beforeAll(async () => {

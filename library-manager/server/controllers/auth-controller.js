@@ -3,13 +3,13 @@ const jwt = require('jsonwebtoken');
 const { UserModel } = require('../models/user-model');
 const validator = require('validator');
 
-const validRoles = [ 'user', 'super_admin'];
+const validRoles = ['user', 'super_admin'];
 
 const register = async (req, res) => {
   try {
+
     const { username, password, email, role } = req.body;
 
-    // Register input validations
     if (!username || !password || !email) {
       return res.status(400).json({ message: 'Username, password, and email are required.' });
     }
@@ -33,14 +33,13 @@ const register = async (req, res) => {
       return res.status(400).json({ message: 'Password must include uppercase, lowercase, numbers, and special characters.' });
     }
 
-    // Check for existing user
     const existingUser = await UserModel.findOne({ $or: [{ username }, { email }] });
     if (existingUser) {
       return res.status(400).json({ message: 'Username or email already exists.' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new UserModel({ username, password: hashedPassword, email, role : role });
+    const user = new UserModel({ username, password: hashedPassword, email, role: role });
     await user.save();
 
     res.status(201).json({ message: 'User created', user });

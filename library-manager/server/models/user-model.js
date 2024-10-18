@@ -25,9 +25,7 @@ const userSchema = mongoose.Schema({
     default: 0
   },
   category: {
-    type: String,
-    unique: true,
-    default: ""
+    type: String
   }
 });
 

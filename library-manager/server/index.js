@@ -15,6 +15,7 @@ const app = express();
 app.use(express.json());
 
 const cors = require("cors");
+const categoryRouter = require("./routes/category-route");
 
 app.use(cors({
     origin: "*",
@@ -34,6 +35,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/books', bookRouter);
 app.use('/api/requests', requestRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/categories', categoryRouter);
 
 
 // app.listen(PORT, async () => {

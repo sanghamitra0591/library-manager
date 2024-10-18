@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8080;
 const startServer = async () => {
     if (server) {
         console.log('Server is already running.');
-        return; // Prevent starting a new instance
+        return;
     }
 
     server = http.createServer(app);
@@ -18,11 +18,11 @@ const startServer = async () => {
         server.listen(PORT, async () => {
             try {
                 await connection;
-                console.log("Connected to DB");
-                console.log(`Running at port ${PORT}`);
+                // console.log("Connected to DB");
+                // console.log(`Running at port ${PORT}`);
                 resolve();
             } catch (error) {
-                console.error("Error while connecting to DB:", error);
+                // console.error("Error while connecting to DB:", error);
                 reject(error);
             }
         });
@@ -37,7 +37,7 @@ const closeServer = () => {
                 } else {
                     console.log('Server closed');
                 }
-                server = null; // Reset server variable
+                server = null;
                 resolve();
             });
         } else {
