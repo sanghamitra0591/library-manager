@@ -34,7 +34,6 @@ export const fetchAdminsThunk = createAsyncThunk(
     }
 );
 
-// New thunk for adding an admin
 export const addAdminThunk = createAsyncThunk(
     'admins/addAdmin',
     async ({ username, email, password, category }, { rejectWithValue }) => {
@@ -54,7 +53,7 @@ export const addAdminThunk = createAsyncThunk(
                 return rejectWithValue(errorData.message);
             }
 
-            return await response.json(); // Return the success response if needed
+            return await response.json();
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -85,7 +84,6 @@ const adminSlice = createSlice({
             })
             .addCase(addAdminThunk.fulfilled, (state, action) => {
                 state.loading = false;
-                // Optionally add the new admin to the admins array
                 state.admins.push(action.payload);
             })
             .addCase(addAdminThunk.rejected, (state, action) => {

@@ -9,9 +9,9 @@ const RequestCard = ({ props }) => {
     const [loadingAction, setLoadingAction] = useState(null);
 
     const handleRequest = async (requestId, status) => {
-        setLoadingAction(status); // Set loading for the specific action
+        setLoadingAction(status); 
         const result = await dispatch(handleRequestThunk({ requestId, status }));
-        setLoadingAction(null); // Reset loading state
+        setLoadingAction(null); 
         if (handleRequestThunk.fulfilled.match(result)) {
             toast.success(`Request has been ${status === 'accepted' ? 'accepted' : 'declined'}.`);
         } else {

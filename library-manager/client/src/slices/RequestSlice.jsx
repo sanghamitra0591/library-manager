@@ -51,7 +51,7 @@ export const handleRequestThunk = createAsyncThunk(
                 return rejectWithValue(errorData.message);
             }
             const data = await response.json();
-            return data; // Return the updated request
+            return data;
         } catch (error) {
             return rejectWithValue(error.message);
         }

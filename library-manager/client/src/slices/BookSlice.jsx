@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 const initialState = {
     books: [],
-    originalBooks: [], // New property to store the original list of books
+    originalBooks: [],
     loading: false,
     error: null,
 };
@@ -138,7 +138,7 @@ const booksSlice = createSlice({
             })
             .addCase(fetchBooksThunk.fulfilled, (state, action) => {
                 state.books = action.payload;
-                state.originalBooks = action.payload; // Store the original books
+                state.originalBooks = action.payload;
                 state.loading = false;
             })
             .addCase(fetchBooksThunk.rejected, (state, action) => {

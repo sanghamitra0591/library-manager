@@ -1,4 +1,3 @@
-// Signup.jsx
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signupUserThunk } from "../../slices/AuthSlice";
