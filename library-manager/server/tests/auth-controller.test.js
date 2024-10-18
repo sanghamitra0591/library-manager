@@ -55,7 +55,7 @@ describe('Auth Controller', () => {
     });
 
     test('Admin creation by Super Admin', async () => {
-        const superAdminRes = await request(app)
+        await request(app)
             .post('/api/auth/register')
             .send({
                 username: 'superadmin',
@@ -156,7 +156,7 @@ describe('Book Controller', () => {
     });
 
     test('Add a book', async () => {
-        const superAdminRes = await request(app)
+        await request(app)
             .post('/api/auth/register')
             .send({
                 username: 'superadmin',
@@ -205,7 +205,7 @@ describe('Book Controller', () => {
     });
 
     test('Get all books', async () => {
-        const superAdminRes = await request(app)
+        await request(app)
             .post('/api/auth/register')
             .send({
                 username: 'superadmin',
@@ -274,7 +274,7 @@ describe('Book Controller', () => {
     });
 
     test('Get searched books', async () => {
-        const superAdminRes = await request(app)
+        await request(app)
             .post('/api/auth/register')
             .send({
                 username: 'superadmin',
@@ -361,7 +361,7 @@ describe('Request Controller', () => {
     });
 
     test('create request', async () => {
-        const superAdminRes = await request(app)
+        await request(app)
             .post('/api/auth/register')
             .send({
                 username: 'superadmin',
@@ -670,6 +670,158 @@ describe('Request Controller', () => {
 
         expect(returnRes.body.status).toBe("returned");
     });
+
+    test('Get User request', async () => {
+        await request(app)
+            .post('/api/auth/register')
+            .send({
+                username: 'superadmin',
+                password: 'Password123!',
+                email: 'superadmin@example.com',
+                role: 'super_admin'
+            });
+
+        const superAdminLoginRes = await request(app)
+            .post('/api/auth/login')
+            .send({
+                email: 'superadmin@example.com',
+                password: 'Password123!',
+            });
+
+        superAdminToken = superAdminLoginRes.body.token;
+        await request(app)
+            .post('/api/admin/add-admin')
+            .set('Authorization', `Bearer ${superAdminToken}`)
+            .send({
+                username: 'adminuser',
+                password: 'Password123!',
+                category: 'someCategory',
+                email: "adminuser@example.com"
+            });
+
+        const adminLoginRes = await request(app)
+            .post('/api/auth/login')
+            .send({
+                email: 'adminuser@example.com',
+                password: 'Password123!',
+            });
+
+        adminToken = adminLoginRes.body.token;
+        const bookRes = await request(app)
+            .post('/api/books')
+            .set('Authorization', `Bearer ${adminToken}`)
+            .send({
+                title: 'Test Book',
+                author: 'Author Name',
+                quantity: 10,
+                publishYear: 2020
+            });
+
+        const bookId = bookRes.body._id;
+
+        await request(app)
+            .post('/api/auth/register')
+            .send({
+                username: 'testuser',
+                password: 'Password123!',
+                email: 'testuser@example.com',
+            });
+        const userLoginRes = await request(app)
+            .post('/api/auth/login')
+            .send({
+                email: 'testuser@example.com',
+                password: 'Password123!',
+            });
+
+        userToken = userLoginRes.body.token;
+        const requestRes = await request(app)
+            .post('/api/requests')
+            .set('Authorization', `Bearer ${userToken}`)
+            .send({ bookId });
+
+        const res = await request(app)
+            .get('/api/requests/my-requests')
+            .set('Authorization', `Bearer ${userToken}`)
+
+        expect(res.body[0]._id).toBe(requestRes.body._id);
+        expect(res.body[0].userId).toBe(userLoginRes.body.user._id);
+    });
+
+    test('Get All requests', async () => {
+        await request(app)
+            .post('/api/auth/register')
+            .send({
+                username: 'superadmin',
+                password: 'Password123!',
+                email: 'superadmin@example.com',
+                role: 'super_admin'
+            });
+
+        const superAdminLoginRes = await request(app)
+            .post('/api/auth/login')
+            .send({
+                email: 'superadmin@example.com',
+                password: 'Password123!',
+            });
+
+        superAdminToken = superAdminLoginRes.body.token;
+        await request(app)
+            .post('/api/admin/add-admin')
+            .set('Authorization', `Bearer ${superAdminToken}`)
+            .send({
+                username: 'adminuser',
+                password: 'Password123!',
+                category: 'someCategory',
+                email: "adminuser@example.com"
+            });
+
+        const adminLoginRes = await request(app)
+            .post('/api/auth/login')
+            .send({
+                email: 'adminuser@example.com',
+                password: 'Password123!',
+            });
+
+        adminToken = adminLoginRes.body.token;
+        const bookRes = await request(app)
+            .post('/api/books')
+            .set('Authorization', `Bearer ${adminToken}`)
+            .send({
+                title: 'Test Book',
+                author: 'Author Name',
+                quantity: 10,
+                publishYear: 2020
+            });
+
+        const bookId = bookRes.body._id;
+
+        await request(app)
+            .post('/api/auth/register')
+            .send({
+                username: 'testuser',
+                password: 'Password123!',
+                email: 'testuser@example.com',
+            });
+        const userLoginRes = await request(app)
+            .post('/api/auth/login')
+            .send({
+                email: 'testuser@example.com',
+                password: 'Password123!',
+            });
+
+        userToken = userLoginRes.body.token;
+        const requestRes = await request(app)
+            .post('/api/requests')
+            .set('Authorization', `Bearer ${userToken}`)
+            .send({ bookId });
+
+        const res = await request(app)
+            .get('/api/requests/my-requests')
+            .set('Authorization', `Bearer ${userToken}`)
+
+        expect(res.body[0]._id).toBe(requestRes.body._id);
+        expect(res.body[0].category).toBe(adminLoginRes.body.user.category);
+    });
 });
 
 describe('Category Controller', () => {
@@ -725,7 +877,7 @@ describe('Category Controller', () => {
             });
 
         adminToken = adminLoginRes.body.token;
-        
+
         const res = await request(app)
             .get('/api/categories')
             .set('Authorization', `Bearer ${userToken}`)
