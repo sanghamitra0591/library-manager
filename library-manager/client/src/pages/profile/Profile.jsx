@@ -65,9 +65,9 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className='profileContentHolder'>
-                    {error && <p>{error}</p>}
+                    {error && tab!=="none" && <p>{error}</p>}
                     {loading && <Loader />}
-                    {!loading && !error && <div className={tab === "none" ? "showProfile" : "hideProfile"}><div className="showProfileSettings">
+                    {!loading && <div className={tab === "none" ? "showProfile" : "hideProfile"}><div className="showProfileSettings">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIudtTcOnMdwrWvu8IugZnHqEyiCSq4NYu1A&s" alt="" />
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSixWENwTZdvqJbo7WMo7JJX4yBrk5Mif_bxg&s" alt="userAvatar" />
                     </div>

@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie';
 
-
 const initialState = {
     books: [],
+    originalBooks: [], // New property to store the original list of books
     loading: false,
     error: null,
 };
@@ -108,7 +108,6 @@ export const createBookThunk = createAsyncThunk(
     }
 );
 
-
 const booksSlice = createSlice({
     name: "books",
     initialState,
@@ -122,7 +121,13 @@ const booksSlice = createSlice({
             });
         },
         filterBooks(state, action) {
-            // Implement filtering logic if needed
+            const { searchTerm, selectedCategory } = action.payload;
+
+            state.books = state.originalBooks.filter(book => {
+                const matchesCategory = selectedCategory ? book.category === selectedCategory : true;
+                const matchesSearchTerm = book.title.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchesCategory && matchesSearchTerm;
+            });
         },
     },
     extraReducers: (builder) => {
@@ -133,6 +138,7 @@ const booksSlice = createSlice({
             })
             .addCase(fetchBooksThunk.fulfilled, (state, action) => {
                 state.books = action.payload;
+                state.originalBooks = action.payload; // Store the original books
                 state.loading = false;
             })
             .addCase(fetchBooksThunk.rejected, (state, action) => {
@@ -171,7 +177,7 @@ const booksSlice = createSlice({
             .addCase(createBookThunk.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-            })
+            });
     },
 });
 

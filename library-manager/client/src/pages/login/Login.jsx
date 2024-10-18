@@ -27,7 +27,8 @@ const Login = () => {
             setLoading(false);
         } else {
             const { token } = action.payload;
-            Cookies.set('authToken', token, { expires: 7, secure: true });
+            // Cookies.set('authToken', token, { expires: 7, secure: true });
+            Cookies.set('authToken', token, { expires : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), httpOnly: true, secure: true});
             setLoading(false);
             toast.success("Successfully Logged In")
             dispatch(setUser(action.payload.user))

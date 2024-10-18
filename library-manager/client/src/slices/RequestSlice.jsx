@@ -5,7 +5,7 @@ const initialState = {
     requests: [],
     loading: false,
     error: null,
-    userRequests: {}
+    userRequests: []
 };
 
 const BaseURL = process.env.REACT_APP_BASE_URL;
@@ -102,7 +102,7 @@ export const fetchUserRequestsThunk = createAsyncThunk(
                 return rejectWithValue(errorData.message);
             }
             const data = await response.json();
-            return data;
+            return data.reverse();
         } catch (error) {
             return rejectWithValue(error.message);
         }

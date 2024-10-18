@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooksThunk, searchBooksThunk, sortBooks, requestBookThunk } from '../../slices/BookSlice';
+import { fetchBooksThunk, searchBooksThunk, sortBooks, requestBookThunk, filterBooks } from '../../slices/BookSlice';
 import { fetchCategoriesThunk } from '../../slices/CategorySlice';
 import "./Books.css";
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ const Books = () => {
     const { currentUser } = useSelector(state => state.auth);
     const { books, loading, error } = useSelector(state => state.books);
     const { userRequests } = useSelector(state => state.requests);
-    const { categories } = useSelector(state => state.categories);
+    const { categories, loading: categoriesLoading } = useSelector(state => state.categories);
     const [searchTerm, setSearchTerm] = useState('');
     const [requestLoading, setRequestLoading] = useState(false);
     const [searchLoading, setSearchLoading] = useState(false);
@@ -23,16 +23,44 @@ const Books = () => {
 
     useEffect(() => {
         const fetchBooksAndRequests = async () => {
+            if (currentUser.role !== "admin") {
+                await dispatch(fetchCategoriesThunk());
+            }
+            if (currentUser.role === "user") {
+                await dispatch(fetchUserRequestsThunk());
+            }
             await dispatch(fetchBooksThunk());
-            await dispatch(fetchUserRequestsThunk());
-            await dispatch(fetchCategoriesThunk());
         };
 
         fetchBooksAndRequests();
-    }, [dispatch]);
+    }, [dispatch, currentUser.role]);
 
     const getRequestStatus = (bookId) => {
-        return userRequests[bookId]?.status || null;
+        if (currentUser.role !== "user") return null;
+        const request = userRequests.find(req => req.bookId._id === bookId);
+        return request ? request.status : null;
+    };
+
+    const handleSort = (sortBy) => {
+        dispatch(sortBooks(sortBy));
+    };
+
+    const handleRequest = async (bookId) => {
+        if (currentUser.role !== "user") return;
+        setRequestLoading(true);
+        const action = await dispatch(requestBookThunk(bookId));
+
+        if (requestBookThunk.rejected.match(action)) {
+            setRequestLoading(false);
+            toast.error("Request failed");
+        } else {
+            setRequestLoading(false);
+            toast.success("Request sent");
+            dispatch(fetchBooksThunk());
+            if (currentUser.role === "user") {
+                await dispatch(fetchUserRequestsThunk());
+            }
+        }
     };
 
     const handleSearch = (e) => {
@@ -45,40 +73,28 @@ const Books = () => {
         } else {
             setSearchLoading(false);
         }
-    };
-
-    const handleSort = (sortBy) => {
-        dispatch(sortBooks(sortBy));
-    };
-
-    const handleRequest = async (bookId) => {
-        setRequestLoading(true);
-        const action = await dispatch(requestBookThunk(bookId));
-
-        if (requestBookThunk.rejected.match(action)) {
-            setRequestLoading(false);
-            toast.error("Request failed");
-        } else {
-            setRequestLoading(false);
-            toast.success("Request sent");
-            dispatch(fetchBooksThunk());
-        }
+        dispatch(filterBooks({ searchTerm, selectedCategory }));
     };
 
     const handleCategoryChange = (e) => {
-        setSelectedCategory(e.target.value);
-        // Optionally, you can filter books by category here if needed
+        const newCategory = e.target.value;
+        setSelectedCategory(newCategory);
+        dispatch(filterBooks({ searchTerm, selectedCategory: newCategory }));
     };
 
     return (
         <div className='BooksWrapper'>
             <div className='bookButtonsWrapper'>
-                <select onChange={handleCategoryChange}>
-                    <option value="">Select Category</option>
-                    {categories.map(category => (
-                        <option key={category} value={category}>{category}</option>
-                    ))}
-                </select>
+                {currentUser.role!=="admin" && categoriesLoading ? (
+                    currentUser.role!=="admin" && <p>Loading categories...</p>
+                ) : (
+                    currentUser.role!=="admin" && <select onChange={handleCategoryChange}>
+                        <option value="">Select Category</option>
+                        {categories.map(category => (
+                            <option key={category} value={category}>{category}</option>
+                        ))}
+                    </select>
+                )}
                 <select onChange={(e) => handleSort(e.target.value)}>
                     <option value="title">Sort by Title</option>
                     <option value="publishYear">Sort by Publish Year</option>
@@ -106,7 +122,6 @@ const Books = () => {
                         let buttonText = "Request Book";
                         let isDisabled = false;
 
-                        // Determine button text and disable status based on request status
                         if (requestStatus === 'pending') {
                             buttonText = "Pending Request";
                             isDisabled = true;
@@ -114,7 +129,7 @@ const Books = () => {
                             buttonText = "Request Accepted";
                             isDisabled = true;
                         } else if (requestStatus === 'declined' || requestStatus === 'returned') {
-                            buttonText = "Request Book"; // Reset button text for declined or returned
+                            buttonText = "Request Book";
                         }
 
                         return (
@@ -125,7 +140,7 @@ const Books = () => {
                                 <p>Category: {book.category}</p>
                                 <h4>Available Quantity: {book.quantity}</h4>
                                 {currentUser?.role === "user" && (
-                                    <button 
+                                    <button
                                         disabled={book.quantity <= 0 || isDisabled}
                                         onClick={() => handleRequest(book._id)}
                                     >

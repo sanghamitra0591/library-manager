@@ -1,4 +1,3 @@
-// CategorySlice.jsx
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie';
 
@@ -18,7 +17,7 @@ export const fetchCategoriesThunk = createAsyncThunk(
             const response = await fetch(`${BaseURL}/api/categories`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`,
                 },
             });
             if (!response.ok) {
@@ -33,7 +32,7 @@ export const fetchCategoriesThunk = createAsyncThunk(
     }
 );
 
-const categorySlice = createSlice({
+const categoriesSlice = createSlice({
     name: "categories",
     initialState,
     reducers: {},
@@ -54,4 +53,4 @@ const categorySlice = createSlice({
     },
 });
 
-export default categorySlice.reducer;
+export default categoriesSlice.reducer;
