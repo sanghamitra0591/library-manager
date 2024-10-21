@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooksThunk, searchBooksThunk, sortBooks, requestBookThunk, filterBooks } from '../../slices/BookSlice';
+import { fetchBooksThunk, searchBooksThunk, sortBooks, requestBookThunk, filterBooks, deleteBookThunk, updateBookThunk } from '../../slices/BookSlice';
 import { fetchCategoriesThunk } from '../../slices/CategorySlice';
 import "./Books.css";
 import { useNavigate } from 'react-router-dom';
@@ -82,13 +82,36 @@ const Books = () => {
         dispatch(filterBooks({ searchTerm, selectedCategory: newCategory }));
     };
 
+    const handleDelete = async (bookId) => {
+        if (window.confirm("Are you sure you want to delete this book?")) {
+            const action = await dispatch(deleteBookThunk(bookId));
+            if (deleteBookThunk.rejected.match(action)) {
+                toast.error("Delete failed");
+            } else {
+                toast.success("Book deleted");
+            }
+        }
+    };
+
+    const handleUpdate = async (bookId) => {
+        const updatedData = prompt("Enter new quantity:", "0");
+        if (updatedData) {
+            const action = await dispatch(updateBookThunk({ bookId, updatedData: { quantity: Number(updatedData) } }));
+            if (updateBookThunk.rejected.match(action)) {
+                toast.error("Update failed");
+            } else {
+                toast.success("Book updated");
+            }
+        }
+    };
+
     return (
         <div className='BooksWrapper'>
             <div className='bookButtonsWrapper'>
-                {currentUser.role!=="admin" && categoriesLoading ? (
-                    currentUser.role!=="admin" && <p>Loading categories...</p>
+                {currentUser.role !== "admin" && categoriesLoading ? (
+                    currentUser.role !== "admin" && <p>Loading categories...</p>
                 ) : (
-                    currentUser.role!=="admin" && <select onChange={handleCategoryChange}>
+                    currentUser.role !== "admin" && <select onChange={handleCategoryChange}>
                         <option value="">Select Category</option>
                         {categories.map(category => (
                             <option key={category} value={category}>{category}</option>
@@ -138,6 +161,12 @@ const Books = () => {
                                 <p>Published Year: {book.publishYear}</p>
                                 <p>Category: {book.category}</p>
                                 <h4>Available Quantity: {book.quantity}</h4>
+                                {currentUser?.role === "admin" && (
+                                    <>
+                                        <button onClick={() => handleUpdate(book._id)}>Update Quantity</button>
+                                        <button onClick={() => handleDelete(book._id)}>Delete Book</button>
+                                    </>
+                                )}
                                 {currentUser?.role === "user" && (
                                     <button
                                         disabled={book.quantity <= 0 || isDisabled}

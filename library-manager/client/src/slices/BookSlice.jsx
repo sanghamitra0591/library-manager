@@ -108,6 +108,52 @@ export const createBookThunk = createAsyncThunk(
     }
 );
 
+export const deleteBookThunk = createAsyncThunk(
+    'books/deleteBook',
+    async (bookId, { rejectWithValue }) => {
+        const token = Cookies.get('authToken');
+        try {
+            const response = await fetch(`${BaseURL}/api/books/${bookId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+            if (!response.ok) {
+                const errorData = await response.json();
+                return rejectWithValue(errorData.message);
+            }
+            return bookId;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const updateBookThunk = createAsyncThunk(
+    'books/updateBook',
+    async ({ bookId, updatedData }, { rejectWithValue }) => {
+        const token = Cookies.get('authToken');
+        try {
+            const response = await fetch(`${BaseURL}/api/books/${bookId}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedData),
+            });
+            if (!response.ok) {
+                const errorData = await response.json();
+                return rejectWithValue(errorData.message);
+            }
+            return await response.json();
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 const booksSlice = createSlice({
     name: "books",
     initialState,
@@ -177,7 +223,16 @@ const booksSlice = createSlice({
             .addCase(createBookThunk.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-            });
+            })
+            .addCase(deleteBookThunk.fulfilled, (state, action) => {
+                state.books = state.books.filter(book => book._id !== action.payload);
+            })
+            .addCase(updateBookThunk.fulfilled, (state, action) => {
+                const index = state.books.findIndex(book => book._id === action.payload._id);
+                if (index !== -1) {
+                    state.books[index] = action.payload;
+                }
+            })
     },
 });
 
