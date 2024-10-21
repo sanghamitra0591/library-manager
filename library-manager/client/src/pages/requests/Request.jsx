@@ -29,7 +29,7 @@ const Requests = () => {
 
     return (
         <div className='RequestsWrapper'>
-            {error && <p>{error}</p>}
+            {error && <p style={{color: "Red"}}>{error}</p>}
             {loading ? <Loader /> :
                 <div className='requestsContainer'>
                     <div className='requestTabHeaderWrapper'>

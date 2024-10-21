@@ -19,6 +19,10 @@ const CreateBook = () => {
         e.preventDefault();
         setLoading(true);
 
+        if (quantity > 20) {
+            setQuantity(20)
+        }
+
         const bookData = { title, author, publishYear, quantity };
         const action = await dispatch(createBookThunk(bookData));
 
@@ -37,7 +41,7 @@ const CreateBook = () => {
         <div className='createBookWrapper'>
             <div className='createBookContainer'>
                 <h2>Create Book</h2>
-                {error && <p className="error">{error}</p>}
+                {error && <p style={{ color: "Red" }} className="error">{error}</p>}
                 <form className="createBookForm" onSubmit={handleSubmit}>
                     <input
                         type="text"
@@ -64,6 +68,8 @@ const CreateBook = () => {
                         type="number"
                         placeholder='Enter Quantity'
                         value={quantity}
+                        min={1}
+                        max={20}
                         onChange={(e) => setQuantity(Number(e.target.value))}
                         required
                     /><br />

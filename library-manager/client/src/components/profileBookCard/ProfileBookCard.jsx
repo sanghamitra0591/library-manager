@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import "./ProfileBookCard.css"
-import { useDispatch } from 'react-redux';
 
 const ProfileBookCard = ({ props, onReturn }) => {
 
@@ -27,9 +26,16 @@ const ProfileBookCard = ({ props, onReturn }) => {
     };
 
 
-    const handleReturn = (e) => {
+    // const handleReturn = (e) => {
+    //     e.preventDefault();
+    //     onReturn(request._id); 
+    // };
+
+    const handleReturn = async (e) => {
         e.preventDefault();
-        onReturn(request._id); 
+        setLoading(true);
+        await onReturn(request._id);
+        setLoading(false);
     };
 
     return (
@@ -47,12 +53,12 @@ const ProfileBookCard = ({ props, onReturn }) => {
                 {request.expectedReturnDate && <p className={request.returnDate ? '' : 'returnDate'}>Return Before: {convertTime(request.expectedReturnDate)}</p>}
                 {request.returnDate && <p>Return Date: {convertTime(request.returnDate)}</p>}
                 {request.status === "accepted" && (
-                <div>
-                    <button onClick={handleReturn} style={{ backgroundColor: "#fa0249" }} disabled={loading}>
-                        {loading ? "Returning..." : "Return"}
-                    </button>
-                </div>
-            )}
+                    <div>
+                        <button onClick={handleReturn} style={{ backgroundColor: "#fa0249" }} disabled={loading}>
+                            {loading ? "Returning..." : "Return"}
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     )
