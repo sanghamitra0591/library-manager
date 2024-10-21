@@ -18,21 +18,27 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
         const loginData = { email, password };
-
+    
         const action = await dispatch(loginUserThunk(loginData));
-
+    
         if (loginUserThunk.rejected.match(action)) {
-            setError(action.payload);
+            setError(action.payload || 'Login failed');
             setLoading(false);
         } else {
-            const { token } = action.payload;
-            Cookies.set('authToken', token, { expires : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), httpOnly: true, secure: true});
-            setLoading(false);
-            toast.success("Successfully Logged In")
-            dispatch(setUser(action.payload.user))
-            navigate("/")
+            const { token } = action.payload || {};
+            if (token) {
+                Cookies.set('authToken', token, { expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), httpOnly: true, secure: true });
+                setLoading(false);
+                toast.success("Successfully Logged In");
+                dispatch(setUser(action.payload.user));
+                navigate("/");
+            } else {
+                setError('Invalid response from server');
+                setLoading(false);
+            }
         }
     };
+    
 
     return (
         <div className='loginWrapper'>
