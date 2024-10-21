@@ -37,7 +37,7 @@ const CreateAdmin = () => {
         <div className='createAdminWrapper'>
             <div className='createAdminContainer'>
                 <h2>Create Admin</h2>
-                {error && <p className="error">{error}</p>}
+                {error && <p style={{color: "Red"}} className="error">{error}</p>}
                 <form className="createAdminForm" onSubmit={handleSubmit}>
                     <input
                         type="text"

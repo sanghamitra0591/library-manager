@@ -75,7 +75,7 @@ const Signup = () => {
         <div className='signupWrapper'>
             <div className='signupContainer'>
                 <h2>Create Account</h2>
-                {error && <p className="error">{error}</p>}
+                {error && <p style={{color: "Red"}} className="error">{error}</p>}
                 <form className="signupForm" onSubmit={handleSubmit}>
                     <input
                         type="text"

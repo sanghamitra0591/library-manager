@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Signup from './Signup';
-import { signupUserThunk } from '../../slices/AuthSlice';
 import { toast } from 'react-toastify';
 
 const reducer = (state = {}, action) => {

@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUserThunk, setUser } from "../../slices/AuthSlice"
 import Cookies from 'js-cookie';
 import './Login.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const location = useLocation();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -27,24 +30,26 @@ const Login = () => {
         } else {
             const { token } = action.payload || {};
             if (token) {
-                Cookies.set('authToken', token, { expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), httpOnly: true, secure: true });
+                Cookies.remove('authToken');
+                Cookies.set('authToken', token, { expires: 7, secure: true, sameSite: 'None', httpOnly: false });
+                
                 setLoading(false);
                 toast.success("Successfully Logged In");
                 dispatch(setUser(action.payload.user));
-                navigate("/");
+                const loc = location.state?.from || "/";
+                navigate(loc);
             } else {
                 setError('Invalid response from server');
                 setLoading(false);
             }
         }
     };
-    
 
     return (
         <div className='loginWrapper'>
             <div className='loginContainer'>
                 <h2>Login</h2>
-                {error && <p className="error">{error}</p>}
+                {error && <p style={{color: "Red"}} className="error">{error}</p>}
                 <form className="loginForm" onSubmit={handleSubmit}>
                     <input
                         type="email"

@@ -5,17 +5,25 @@ import { fetchAdminsThunk } from '../../slices/AdminSlice'
 import NoResultFull from '../../components/noResult-full/NoResultFull';
 import Loader from '../../components/loader/Loader';
 import "./Admin.css"
+import NoAccess from '../../components/noAccess/NoAccess';
 
 const Admin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { currentUser } = useSelector(state=>state.auth);
   const { admins, loading, error } = useSelector(state => state.admins);
+
+  const userRole= currentUser.role
 
   useEffect(() => {
     dispatch(fetchAdminsThunk());
   }, [dispatch]);
 
-  if (error) return <p>Error: {error}</p>;
+  if (error) return <p style={{color: "Red"}}>Error: {error}</p>;
+
+  if(userRole!=="super_admin"){
+    return <NoAccess />
+  }
 
   return (
     <div className='adminWrapper'>

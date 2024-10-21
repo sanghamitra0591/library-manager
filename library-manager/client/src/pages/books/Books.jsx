@@ -13,7 +13,7 @@ const Books = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { currentUser } = useSelector(state => state.auth);
-    const { books, loading, error } = useSelector(state => state.books);
+    const { books, loading } = useSelector(state => state.books);
     const { userRequests } = useSelector(state => state.requests);
     const { categories, loading: categoriesLoading } = useSelector(state => state.categories);
     const [searchTerm, setSearchTerm] = useState('');
@@ -114,7 +114,6 @@ const Books = () => {
 
             {requestLoading && <h2>Requesting...</h2>}
 
-            {error && <p>{error}</p>}
             {loading ? <Loader /> :
                 <div className='allBooksHolder'>
                     {books.length > 0 ? books.map(book => {

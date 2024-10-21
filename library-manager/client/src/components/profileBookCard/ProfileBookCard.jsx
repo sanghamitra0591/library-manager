@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import "./ProfileBookCard.css"
-import { useDispatch } from 'react-redux';
 
 const ProfileBookCard = ({ props, onReturn }) => {
 

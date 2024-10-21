@@ -65,7 +65,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className='profileContentHolder'>
-                    {error && tab!=="none" && <p>{error}</p>}
+                    {error && tab!=="none" && <p style={{color: "Red"}}>{error}</p>}
                     {loading && <Loader />}
                     {!loading && <div className={tab === "none" ? "showProfile" : "hideProfile"}><div className="showProfileSettings">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIudtTcOnMdwrWvu8IugZnHqEyiCSq4NYu1A&s" alt="" />

@@ -17,7 +17,7 @@ beforeEach(() => {
 });
 
 test('shows error when login fails', async () => {
-    store.dispatch = jest.fn((action) => {
+    store.dispatch = jest.fn(() => {
         return Promise.resolve({ type: 'loginUser/rejected', payload: 'Invalid response from server' });
     });
 
