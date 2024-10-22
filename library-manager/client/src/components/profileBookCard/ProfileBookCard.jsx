@@ -15,7 +15,7 @@ const ProfileBookCard = ({ props, onReturn }) => {
 
         const day = String(istDate.getUTCDate()).padStart(2, '0');
         const month = istDate.toLocaleString('default', { month: 'short' }).toLowerCase();
-        const year = istDate.getUTCFullYear(); // Get full year
+        const year = istDate.getUTCFullYear();
         const hours = String(istDate.getUTCHours() % 12 || 12).padStart(2, '0');
         const minutes = String(istDate.getUTCMinutes()).padStart(2, '0');
         const ampm = istDate.getUTCHours() >= 12 ? 'pm' : 'am';
@@ -24,12 +24,6 @@ const ProfileBookCard = ({ props, onReturn }) => {
 
         return displayDate
     };
-
-
-    // const handleReturn = (e) => {
-    //     e.preventDefault();
-    //     onReturn(request._id); 
-    // };
 
     const handleReturn = async (e) => {
         e.preventDefault();

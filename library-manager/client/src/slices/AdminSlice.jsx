@@ -103,7 +103,7 @@ export const deleteAdminThunk = createAsyncThunk(
                 return rejectWithValue(errorData.message);
             }
 
-            return adminId; // Return the ID of the deleted admin
+            return adminId;
         } catch (error) {
             return rejectWithValue(error.message);
         }
