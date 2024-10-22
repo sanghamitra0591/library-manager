@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import Cookies from 'js-cookie';
 
 const initialState = {
     currentUser: null,
@@ -69,6 +70,8 @@ const authSlice = createSlice({
             state.userLoggedIn = false;
             state.loading = false;
             state.error = null;
+            Cookies.remove('authToken');
+            localStorage.setItem("penalty", JSON.stringify(0));
         },
     },
     extraReducers: (builder) => {

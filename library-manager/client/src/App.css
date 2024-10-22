@@ -1,16 +1,16 @@
 .custom-toast {
-  width: 700px; /* Set the width */
-  height: 500px; /* Set the height */
-  font-size: 24px; /* Increase font size for better readability */
-  padding: 30px; /* Adjust padding for a bigger toast */
-  text-align: center; /* Center text */
-  display: flex; /* Use flexbox for alignment */
-  justify-content: center; /* Center content */
-  align-items: center; /* Center vertically */
-  border-radius: 10px; /* Optional: add border radius for rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Optional: add shadow for depth */
+  width: 400px;
+  height: 50px;
+  font-size: 21px;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .Toastify__toast {
-  margin: 0 auto; /* Center the toast horizontally */
+  margin: 0 auto;
 }

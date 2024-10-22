@@ -1,0 +1,56 @@
+.updateAdminWrapper {
+    text-align: center;
+    height: 100vh;
+    place-content: center;
+}
+.updateAdminContainer{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: 40%;
+    margin: auto;
+    place-content: center;
+    padding: 50px;
+    border-radius: 20px;
+}
+.updateAdminContainer>h2{
+    font-size: 32px;
+}
+.updateAdminForm{
+    width: 70%;
+    text-align: center;
+    padding: 50px;
+    margin: auto;
+    margin-top: 30px;
+    text-align: center;
+}
+.updateAdminForm>div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.updateAdminForm>div>input {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 70%;
+    padding: 10px;
+    font-size: 17px;
+    outline: none;
+    margin: 5px auto;
+    background: none;
+}
+.updateAdminForm>button{
+    background-color: #fa0249;
+    color: #DDE6ED;
+    border: none;
+    width: 40%;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 10px;
+    outline: none;
+    font-weight: bold;
+    margin: 50px auto 0px auto;
+}
+.updateAdminForm>button:hover{
+    background-color: #af0032;
+    cursor: pointer;
+}

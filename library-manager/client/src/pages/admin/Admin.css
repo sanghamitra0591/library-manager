@@ -33,3 +33,26 @@
     width: 250px;
     height: 250px;
 }
+.adminCard>div{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.adminCard>div>button{
+    background-color: #fa0249;
+    color: #DDE6ED;
+    border: none;
+    width: 40%;
+    padding: 12px;
+    font-size: 17px;
+    border-radius: 10px;
+    outline: none;
+    font-weight: bold;
+    margin: 30px auto auto auto;
+}
+.adminCard>div>button:hover{
+    background-color: #af0032;
+    cursor: pointer;
+}

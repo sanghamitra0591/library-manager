@@ -16,11 +16,14 @@ const Profile = () => {
     const [tab, setTab] = useState("none");
     const { currentUser } = useSelector(state => state.auth);
     const { userRequests, loading, error } = useSelector(state => state.requests);
+
+    const increasedPenalty = JSON.parse(localStorage.getItem("penalty")) || 0;
+
     useEffect(() => {
         if (tab !== "none") {
             dispatch(fetchUserRequestsThunk(tab));
         }
-    }, [tab]);
+    }, [tab, increasedPenalty]);
 
     const handleLogout = () => {
         dispatch(resetUser());
@@ -34,6 +37,7 @@ const Profile = () => {
             toast.error("Return Unsuccessful");
         } else {
             toast.success("Return Successful");
+            localStorage.setItem("penalty", JSON.stringify((+increasedPenalty)+(+action.payload.penalty)));
             if (tab !== "none") {
                 dispatch(fetchUserRequestsThunk(tab));
             }
@@ -65,7 +69,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className='profileContentHolder'>
-                    {error && tab!=="none" && <p style={{color: "Red"}}>{error}</p>}
+                    {error && tab !== "none" && <p style={{ color: "Red" }}>{error}</p>}
                     {loading && <Loader />}
                     {!loading && <div className={tab === "none" ? "showProfile" : "hideProfile"}><div className="showProfileSettings">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIudtTcOnMdwrWvu8IugZnHqEyiCSq4NYu1A&s" alt="" />
@@ -83,7 +87,7 @@ const Profile = () => {
                             </div>
                             {currentUser.role === "user" && <div className='penaltyContainer'>
                                 <label>Penalty:</label>
-                                <input type="email" value={currentUser.penalties} readOnly />
+                                <input type="email" value={currentUser.penalties+increasedPenalty || 0} readOnly />
                             </div>}
                             <div className='logoutButtonConatiner'>
                                 <button onClick={() => handleLogout()}>Logout</button>
