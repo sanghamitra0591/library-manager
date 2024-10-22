@@ -1,5 +1,10 @@
 # library-manager
 
+## Deployed URLs
+- **Frontend URL**: [[https://your-frontend-url.com](https://your-frontend-url.com)](https://library-manager-q2jgejtlh-sanghamitras-projects-43b1eaaf.vercel.app/)
+- **Backend URL**: [[https://your-backend-url.com](https://your-backend-url.com)](https://library-server-rtxl.onrender.com)
+
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
@@ -37,52 +42,65 @@ This project is a library management system designed to streamline the process o
   - Return books with a penalty of ₹50 per day if the expected return date is exceeded
 
 ## Technologies Used
-- Frontend: [React](https://reactjs.org/), [Vue.js](https://vuejs.org/), [Angular](https://angular.io/)
+- Frontend: [React](https://reactjs.org/)
 - Backend: [Node.js](https://nodejs.org/), [Express](https://expressjs.com/)
-- Database: [MongoDB](https://www.mongodb.com/), [MySQL](https://www.mysql.com/)
-- Authentication: [JWT](https://jwt.io/), [OAuth](https://oauth.net/)
+- Database: [MongoDB](https://www.mongodb.com/)
+- Authentication: [JWT](https://jwt.io/)
 - Styling: [Bootstrap](https://getbootstrap.com/)
+  
+  
+## Sample Login Credentials
+- **You can use the following credentials to test the different roles:
 
-## Deployed URLs
-- **Frontend URL**: [https://your-frontend-url.com](https://your-frontend-url.com)
-- **Backend URL**: [https://your-backend-url.com](https://your-backend-url.com)
+    SuperAdmin
+        Username: superadmin@bookheaven.com
+        Password: Superadmin@1
+
+    Admin
+        Username: admin1@bookheaven.com
+        Password: Admin@123
+
+    User
+        Username: user1@gmail.com
+        Password: User@123
+
 
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/project-name.git
-   cd project-name
+   git clone [https://github.com/yourusername/project-name.git](https://github.com/sanghamitra0591/library-manager.git)
+   cd library-manager
 
-Install dependencies:
+## Install dependencies:
 
-    For the backend:
+- **For the backend:
 
     bash
 
-cd backend
-npm install
+    cd backend
+    npm install
 
-For the frontend:
+- **For the frontend:
 
-bash
+    bash
 
     cd frontend
     npm install
 
-Set up environment variables (create a .env file):
+- **Set up environment variables (create a .env file):
 
     For the backend, include database connection details and secret keys.
 
-Start the application:
+## Start the application:
 
-    For the backend:
+   - ** For the backend:
 
     bash
 
 cd backend
 npm start
 
-For the frontend:
+- **For the frontend:
 
 bash
 
@@ -97,25 +115,9 @@ Usage
         Admin can manage books in their category and handle user requests.
         Users can browse books and manage their requests.
 
-Sample Login Credentials
+## Contributing
 
-You can use the following credentials to test the different roles:
-
-    SuperAdmin
-        Username: superadmin@example.com
-        Password: SuperAdmin123
-
-    Admin
-        Username: admin@example.com
-        Password: Admin123
-
-    User
-        Username: user@example.com
-        Password: User123
-
-Contributing
-
-We welcome contributions! Please follow these steps:
+- **We welcome contributions! Please follow these steps:
 
     Fork the repository.
     Create a new branch (git checkout -b feature/YourFeature).
@@ -127,9 +129,6 @@ License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-rust
-
 
 Feel free to replace the placeholders for the deployed URLs with the actual URLs for your project!
-
 
