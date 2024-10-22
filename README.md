@@ -1,7 +1,7 @@
 # library-manager
 
 ## Deployed URLs
-- **Frontend URL**: [https://library-manager-q2jgejtlh-sanghamitras-projects-43b1eaaf.vercel.app/](https://library-manager-q2jgejtlh-sanghamitras-projects-43b1eaaf.vercel.app/)
+- **Frontend URL**: [https://library-manager-flame.vercel.app/](https://library-manager-flame.vercel.app/)
 - **Backend URL**: [https://library-server-rtxl.onrender.com](https://library-server-rtxl.onrender.com)
 
 
