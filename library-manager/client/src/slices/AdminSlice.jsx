@@ -60,6 +60,56 @@ export const addAdminThunk = createAsyncThunk(
     }
 );
 
+export const updateAdminThunk = createAsyncThunk(
+    'admins/updateAdmin',
+    async ({ adminId, data }, { rejectWithValue }) => {
+        try {
+            const token = Cookies.get('authToken');
+            const response = await fetch(`${BaseURL}/api/admin/admins/${adminId}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                return rejectWithValue(errorData.message);
+            }
+
+            return await response.json();
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const deleteAdminThunk = createAsyncThunk(
+    'admins/deleteAdmin',
+    async (adminId, { rejectWithValue }) => {
+        try {
+            const token = Cookies.get('authToken');
+            const response = await fetch(`${BaseURL}/api/admin/admins/${adminId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                return rejectWithValue(errorData.message);
+            }
+
+            return adminId; // Return the ID of the deleted admin
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 const adminSlice = createSlice({
     name: "admins",
     initialState,
@@ -89,7 +139,16 @@ const adminSlice = createSlice({
             .addCase(addAdminThunk.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-            });
+            })
+            .addCase(updateAdminThunk.fulfilled, (state, action) => {
+                const index = state.admins.findIndex(admin => admin._id === action.payload._id);
+                if (index !== -1) {
+                    state.admins[index] = action.payload;
+                }
+            })
+            .addCase(deleteAdminThunk.fulfilled, (state, action) => {
+                state.admins = state.admins.filter(admin => admin._id !== action.payload);
+            })
     },
 });
 

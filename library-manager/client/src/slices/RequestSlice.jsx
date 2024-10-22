@@ -9,7 +9,6 @@ const initialState = {
 };
 
 const BaseURL = process.env.REACT_APP_BASE_URL;
-
 export const fetchRequestsThunk = createAsyncThunk(
     'requests/fetchRequests',
     async (_, { rejectWithValue }) => {

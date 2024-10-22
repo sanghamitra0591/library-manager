@@ -161,7 +161,7 @@ const Books = () => {
                                 <p>Published Year: {book.publishYear}</p>
                                 <p>Category: {book.category}</p>
                                 <h4>Available Quantity: {book.quantity}</h4>
-                                {currentUser?.role === "admin" && (
+                                {(currentUser?.role === "admin" || currentUser?.role ==="super_admin") && (
                                     <>
                                         <button onClick={() => handleUpdate(book._id)}>Update Quantity</button>
                                         <button onClick={() => handleDelete(book._id)}>Delete Book</button>
