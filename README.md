@@ -40,13 +40,13 @@ This project is a library management system designed to streamline the process o
   - View their own book requests (pending, accepted, declined)
   - Request book returns
   - Return books with a penalty of ₹50 per day if the expected return date is exceeded
-
+ 
 ## Technologies Used
-- Frontend: [React](https://reactjs.org/)
-- Backend: [Node.js](https://nodejs.org/), [Express](https://expressjs.com/)
-- Database: [MongoDB](https://www.mongodb.com/)
-- Authentication: [JWT](https://jwt.io/)
-- Styling: [Bootstrap](https://getbootstrap.com/)
+- **Frontend**: [React](https://reactjs.org/)
+- **Backend**: [Node.js](https://nodejs.org/), [Express](https://expressjs.com/)
+- **Database**: [MongoDB](https://www.mongodb.com/)
+- **Authentication**: [JWT](https://jwt.io/)
+- **Styling**: [CSS](https://www.w3schools.com/css/)
   
   
 ## Sample Login Credentials
