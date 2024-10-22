@@ -4,8 +4,10 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Deployed URLs](#deployed-urls)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Sample Login Credentials](#sample-login-credentials)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -40,6 +42,10 @@ This project is a library management system designed to streamline the process o
 - Database: [MongoDB](https://www.mongodb.com/), [MySQL](https://www.mysql.com/)
 - Authentication: [JWT](https://jwt.io/), [OAuth](https://oauth.net/)
 - Styling: [Bootstrap](https://getbootstrap.com/)
+
+## Deployed URLs
+- **Frontend URL**: [https://your-frontend-url.com](https://your-frontend-url.com)
+- **Backend URL**: [https://your-backend-url.com](https://your-backend-url.com)
 
 ## Installation
 1. Clone the repository:
