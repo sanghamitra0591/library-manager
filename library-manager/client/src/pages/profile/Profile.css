@@ -48,7 +48,8 @@
     font-weight: bold;
 }
 
-.profileSettings>div>button:hover, .logoutButtonConatiner>button:hover {
+.profileSettings>div>button:hover,
+.logoutButtonConatiner>button:hover {
     background-color: #af0032;
     cursor: pointer;
 }
@@ -161,10 +162,12 @@
     align-items: center;
     gap: 10px;
 }
-.emailContainer{
+
+.emailContainer {
     gap: 45px;
 }
-.penaltyContainer{
+
+.penaltyContainer {
     gap: 30px;
 }
 
@@ -182,7 +185,7 @@
 }
 
 .logoutButtonConatiner {
-    width:45%;
+    width: 45%;
     text-align: center;
 }
 
@@ -195,4 +198,210 @@
     font-size: 22px;
     font-weight: bold;
     border-radius: 10px;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .profileContainer {
+        flex-direction: row;
+    }
+
+    .profileSettings {
+        width: 30%;
+    }
+
+    .profileContentHolder {
+        width: 65%;
+    }
+
+    .showRequests,
+    .showAcceptedRequests,
+    .showDeclinedRequests,
+    .showReturnededRequests {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .profileWrapper {
+        width: 95%;
+        padding-top: 80px;
+    }
+
+    .profileContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profileSettings {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .profileContentHolder {
+        width: 100%;
+        height: auto;
+    }
+
+
+    .profileSettings>div>p {
+        font-size: 17px;
+        margin: 5px;
+    }
+
+    .profileSettings>div>button {
+        font-size: 17px;
+        padding: 10px 0px;
+    }
+
+
+    .showProfileSettings>img:nth-child(1) {
+        width: 100%;
+        height: 100px;
+        margin: auto;
+    }
+
+    .showProfileSettings>img:nth-child(2) {
+        width: 100px;
+        height: 100px;
+        right: 5%;
+        top: 30%;
+    }
+
+    .showRequests,
+    .showAcceptedRequests,
+    .showDeclinedRequests,
+    .showReturnededRequests {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .profileDetailsContainer>div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .userNameContainer>input,
+    .emailContainer>input,
+    .penaltyContainer>input {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .logoutButtonConatiner {
+        width: 100%;
+    }
+
+    .logoutButtonConatiner>button {
+        width: 100%;
+    }
+
+    .emailContainer{
+        gap: 5px;
+    }
+
+    .userNameContainer>input,
+    .emailContainer>input,
+    .penaltyContainer>input {
+        padding: 8px;
+        width: 80%;
+        font-size: 14px;
+        height: 15px;
+    }
+    .profileDetailsContainer > h2 {
+        font-size: 17px;
+        margin: 0px auto 10px auto;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .profileWrapper {
+        width: 95%;
+        padding-top: 80px;
+    }
+
+    .profileContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profileSettings {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .profileContentHolder {
+        width: 100%;
+        height: auto;
+    }
+
+
+    .profileSettings>div>p {
+        font-size: 17px;
+        margin: 5px;
+    }
+
+    .profileSettings>div>button {
+        font-size: 17px;
+        padding: 10px 0px;
+    }
+
+
+    .showProfileSettings>img:nth-child(1) {
+        width: 100%;
+        height: 100px;
+        margin: auto;
+    }
+
+    .showProfileSettings>img:nth-child(2) {
+        width: 100px;
+        height: 100px;
+        right: 5%;
+        top: 30%;
+    }
+
+    .showRequests,
+    .showAcceptedRequests,
+    .showDeclinedRequests,
+    .showReturnededRequests {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .profileDetailsContainer>div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .userNameContainer>input,
+    .emailContainer>input,
+    .penaltyContainer>input {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .logoutButtonConatiner {
+        width: 100%;
+    }
+
+    .logoutButtonConatiner>button {
+        width: 100%;
+    }
+
+    .emailContainer{
+        gap: 5px;
+    }
+
+    .userNameContainer>input,
+    .emailContainer>input,
+    .penaltyContainer>input {
+        padding: 8px;
+        width: 80%;
+        font-size: 14px;
+        height: 15px;
+    }
+    .profileDetailsContainer > h2 {
+        font-size: 17px;
+        margin: 0px auto 10px auto;
+    }
 }
