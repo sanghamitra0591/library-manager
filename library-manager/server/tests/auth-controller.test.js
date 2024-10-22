@@ -9,6 +9,111 @@ var superAdminToken;
 var adminToken;
 var userToken;
 
+describe('Admin Controller', () => {
+    let superAdminToken;
+
+    beforeEach(async () => {
+        await UserModel.deleteMany({});
+        await request(app)
+            .post('/api/auth/register')
+            .send({
+                username: 'superadmin',
+                password: 'Password123!',
+                email: 'superadmin@example.com',
+                role: 'super_admin'
+            });
+
+        const superAdminLoginRes = await request(app)
+            .post('/api/auth/login')
+            .send({
+                email: 'superadmin@example.com',
+                password: 'Password123!',
+            });
+
+        superAdminToken = superAdminLoginRes.body.token;
+    });
+
+    test('should create an admin successfully', async () => {
+        const res = await request(app)
+            .post('/api/admin/add-admin')
+            .set('Authorization', `Bearer ${superAdminToken}`)
+            .send({
+                username: 'adminuser',
+                password: 'Password123!',
+                category: 'someCategory',
+                email: 'adminuser@example.com'
+            });
+
+        expect(res.statusCode).toBe(201);
+        expect(res.body).toHaveProperty('message', 'Admin created');
+    });
+
+    test('should return 400 if required fields are missing', async () => {
+        const res = await request(app)
+            .post('/api/admin/add-admin')
+            .set('Authorization', `Bearer ${superAdminToken}`)
+            .send({});
+
+        expect(res.statusCode).toBe(400);
+        expect(res.body).toHaveProperty('message', 'Username, password, email and category are required.');
+    });
+
+    test('should return 400 if username already exists', async () => {
+        await request(app)
+            .post('/api/admin/add-admin')
+            .set('Authorization', `Bearer ${superAdminToken}`)
+            .send({
+                username: 'existingAdmin',
+                password: 'Password123!',
+                category: 'someCategory',
+                email: 'adminuser@example.com'
+            });
+
+        const res = await request(app)
+            .post('/api/admin/add-admin')
+            .set('Authorization', `Bearer ${superAdminToken}`)
+            .send({
+                username: 'existingAdmin',
+                password: 'Password123!',
+                category: 'newCategory',
+                email: 'adminuser2@example.com'
+            });
+
+        expect(res.statusCode).toBe(400);
+        expect(res.body).toHaveProperty('message', 'Username already exists.');
+    });
+
+    test('should return 400 for invalid email format', async () => {
+        const res = await request(app)
+            .post('/api/admin/add-admin')
+            .set('Authorization', `Bearer ${superAdminToken}`)
+            .send({
+                username: 'adminuser',
+                password: 'Password123!',
+                category: 'someCategory',
+                email: 'invalidEmail'
+            });
+
+        expect(res.statusCode).toBe(400);
+        expect(res.body).toHaveProperty('message', 'Invalid email format.');
+    });
+
+    test('should return 400 if password is too short', async () => {
+        const res = await request(app)
+            .post('/api/admin/add-admin')
+            .set('Authorization', `Bearer ${superAdminToken}`)
+            .send({
+                username: 'adminuser',
+                password: 'Short1!',
+                category: 'someCategory',
+                email: 'adminuser@example.com'
+            });
+
+        expect(res.statusCode).toBe(400);
+        expect(res.body).toHaveProperty('message', 'Password must be at least 8 characters long.');
+    });
+});
+
 describe('Auth Controller', () => {
     beforeAll(async () => {
         process.env.JWT_SECRET = 'test_secret';
@@ -83,6 +188,7 @@ describe('Auth Controller', () => {
             });
         expect(res.statusCode).toBe(201);
         expect(res.body).toHaveProperty('message', 'Admin created');
+
 
         const loginRes = await request(app)
             .post('/api/auth/login')

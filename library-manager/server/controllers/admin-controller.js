@@ -10,10 +10,6 @@ const addAdmin = async (req, res) => {
       return res.status(400).json({ message: 'Username, password, email and category are required.' });
     }
 
-    if (typeof username !== 'string' || username.trim().length === 0) {
-      return res.status(400).json({ message: 'Username must be a non-empty string.' });
-    }
-
     if (username.length < 3 || username.length > 30) {
       return res.status(400).json({ message: 'Username must be between 3 and 30 characters.' });
     }
