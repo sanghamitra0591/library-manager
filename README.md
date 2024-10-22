@@ -52,3 +52,84 @@ This project is a library management system designed to streamline the process o
    ```bash
    git clone https://github.com/yourusername/project-name.git
    cd project-name
+
+Install dependencies:
+
+    For the backend:
+
+    bash
+
+cd backend
+npm install
+
+For the frontend:
+
+bash
+
+    cd frontend
+    npm install
+
+Set up environment variables (create a .env file):
+
+    For the backend, include database connection details and secret keys.
+
+Start the application:
+
+    For the backend:
+
+    bash
+
+cd backend
+npm start
+
+For the frontend:
+
+bash
+
+        cd frontend
+        npm start
+
+Usage
+
+    Access the frontend by navigating to http://localhost:3000 (or the appropriate port).
+    Use the respective roles to test different functionalities:
+        SuperAdmin can manage admins and books.
+        Admin can manage books in their category and handle user requests.
+        Users can browse books and manage their requests.
+
+Sample Login Credentials
+
+You can use the following credentials to test the different roles:
+
+    SuperAdmin
+        Username: superadmin@example.com
+        Password: SuperAdmin123
+
+    Admin
+        Username: admin@example.com
+        Password: Admin123
+
+    User
+        Username: user@example.com
+        Password: User123
+
+Contributing
+
+We welcome contributions! Please follow these steps:
+
+    Fork the repository.
+    Create a new branch (git checkout -b feature/YourFeature).
+    Make your changes and commit them (git commit -m 'Add new feature').
+    Push to the branch (git push origin feature/YourFeature).
+    Open a pull request.
+
+License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+rust
+
+
+Feel free to replace the placeholders for the deployed URLs with the actual URLs for your project!
+
+
