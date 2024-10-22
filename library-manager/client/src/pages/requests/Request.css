@@ -7,15 +7,18 @@
 .requestCard {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 20px;
+    width: 93%;
 }
-.requestCardTime{
+
+.requestCardTime {
     width: 95%;
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.requestCardTime>h3{
+
+.requestCardTime>h3 {
     width: 150px;
     font-size: 25px;
     font-weight: 600;
@@ -24,7 +27,9 @@
     text-align: center;
     border-radius: 50px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-}.requestCardTime>p{
+}
+
+.requestCardTime>p {
     width: 150px;
     font-size: 20px;
     font-weight: 600;
@@ -34,25 +39,29 @@
     border-radius: 50px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
-.requestCardContainer{
+
+.requestCardContainer {
     text-align: center;
     display: flex;
     gap: 20px;
 }
-.requestCardDataHolder{
+
+.requestCardDataHolder {
     width: 90%;
     margin: auto;
     display: flex;
     justify-content: space-between;
     gap: 20px;
 }
-.requestCardBooksDetails{
+
+.requestCardBooksDetails {
     width: 90%;
     margin: 10px auto;
     padding: 10px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
 .requestCardUserDetails {
     width: 90%;
     margin: 10px auto;
@@ -63,16 +72,15 @@
 
 
 .requestCardButtonsHolder {
-    width: 30%;
+    width: 20%;
     margin: 20px auto;
     place-content: center;
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center; */
+    display: flex;
+    flex-direction: column;
 }
 
 .requestCardButtonsHolder>button {
-    width: 300px;
+    width: 90%;
     padding: 10px 0px;
     font-size: 17px;
     border: none;
@@ -103,11 +111,12 @@
     background-color: gray;
     cursor: not-allowed;
 }
+
 .requestCardButtonsHolder>button:disabled:hover {
     background-color: gray;
 }
 
-.requestTabHeaderWrapper{
+.requestTabHeaderWrapper {
     width: 95%;
     margin: auto;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
@@ -119,29 +128,182 @@
     padding: 5px;
 }
 
-.requestTabHeaderWrapper>div>p{
+.requestTabHeaderWrapper>div>p {
     font-size: 18px;
     font-weight: 600;
 }
-.requestTabHeader{
+
+.requestTabHeader {
     border: none;
     width: 25%;
     border-radius: 20px;
 }
 
-.requestTabHeaderSelected{
+.requestTabHeaderSelected {
     border: none;
     background-color: #fa0249;
     width: 25%;
     border-radius: 20px;
 }
 
-.pendingRequestCardsWrapper, .acceptedRequestCardsWrapper, .declinedRequestCardsWrapper, .allRequestCardsWrapper {
+.pendingRequestCardsWrapper,
+.acceptedRequestCardsWrapper,
+.declinedRequestCardsWrapper,
+.allRequestCardsWrapper {
+    width: 100%;
     padding: 40px;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 40px;
 }
-.hidePendingrequestCardsWrapper, .hideAcceptedrequestCardsWrapper, .hideDeclinedrequestCardsWrapper, .hideAllrequestCardsWrapper{
+
+.hidePendingrequestCardsWrapper,
+.hideAcceptedrequestCardsWrapper,
+.hideDeclinedrequestCardsWrapper,
+.hideAllrequestCardsWrapper {
     display: none;
+}
+
+@media (max-width: 768px) {
+    .RequestsWrapper {
+        width: 90%;
+    }
+
+    .requestCardButtonsHolder {
+        width: 40%;
+    }
+
+    .requestCardButtonsHolder>button {
+        width: 80%;
+    }
+
+    .pendingRequestCardsWrapper,
+    .acceptedRequestCardsWrapper,
+    .declinedRequestCardsWrapper,
+    .allRequestCardsWrapper {
+        padding: 30px;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .requestCardTime {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .requestCardTime>h3 {
+        width: 35%;
+        font-size: 17px;
+        margin: 5px;
+    }
+
+    .requestCardTime>p {
+        width: 50%;
+        font-size: 15px;
+        margin: 5px;
+    }
+
+    .requestCard {
+        width: 90%;
+    }
+
+
+
+    .requestTabHeaderWrapper>div>p {
+        font-size: 16px;
+    }
+
+    .requestCardContainer {
+        display: inline;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .requestCardDataHolder {
+        display: inline;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .requestCardButtonsHolder {
+        display: flex;
+        gap: 10px;
+        flex-direction: row;
+    }
+
+    .requestCardButtonsHolder>button {
+        padding: 10px 14px;
+        font-size: 15px;
+        margin: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .RequestsWrapper {
+        width: 90%;
+    }
+
+    .requestCardButtonsHolder {
+        width: 40%;
+    }
+
+    .requestCardButtonsHolder>button {
+        width: 80%;
+    }
+
+    .pendingRequestCardsWrapper,
+    .acceptedRequestCardsWrapper,
+    .declinedRequestCardsWrapper,
+    .allRequestCardsWrapper {
+        padding: 30px;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .requestCardTime {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .requestCardTime>h3 {
+        width: 35%;
+        font-size: 17px;
+        margin: 5px;
+    }
+
+    .requestCardTime>p {
+        width: 80%;
+        font-size: 15px;
+        margin: 5px;
+    }
+
+    .requestCard {
+        width: 90%;
+    }
+
+    .requestTabHeaderWrapper>div>p {
+        font-size: 13px;
+    }
+
+    .requestCardContainer {
+        display: inline;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .requestCardDataHolder {
+        display: inline;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .requestCardButtonsHolder {
+        display: flex;
+        gap: 10px;
+        flex-direction: row;
+    }
+
+    .requestCardButtonsHolder>button {
+        padding: 8px 12px;
+        font-size: 13px;
+        margin: 5px;
+    }
 }
