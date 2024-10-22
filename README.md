@@ -1,8 +1,8 @@
 # library-manager
 
 ## Deployed URLs
-- **Frontend URL**: [[https://your-frontend-url.com](https://your-frontend-url.com)](https://library-manager-q2jgejtlh-sanghamitras-projects-43b1eaaf.vercel.app/)
-- **Backend URL**: [[https://your-backend-url.com](https://your-backend-url.com)](https://library-server-rtxl.onrender.com)
+- **Frontend URL**: [https://library-manager-q2jgejtlh-sanghamitras-projects-43b1eaaf.vercel.app/](https://library-manager-q2jgejtlh-sanghamitras-projects-43b1eaaf.vercel.app/)
+- **Backend URL**: [https://library-server-rtxl.onrender.com](https://library-server-rtxl.onrender.com)
 
 
 ## Table of Contents
@@ -50,57 +50,58 @@ This project is a library management system designed to streamline the process o
   
   
 ## Sample Login Credentials
-- **You can use the following credentials to test the different roles:
+- **You can use the following credentials to test the different roles:**
 
     SuperAdmin
-        Username: superadmin@bookheaven.com
-        Password: Superadmin@1
+        - Username: superadmin@bookheaven.com
+        - Password: Superadmin@1
 
     Admin
-        Username: admin1@bookheaven.com
-        Password: Admin@123
+        - Username: admin1@bookheaven.com
+        - Password: Admin@123
 
     User
-        Username: user1@gmail.com
-        Password: User@123
+        - Username: user1@gmail.com
+        - Password: User@123
 
 
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/yourusername/project-name.git](https://github.com/sanghamitra0591/library-manager.git)
+   git clone https://github.com/sanghamitra0591/library-manager.git
    cd library-manager
+
 
 ## Install dependencies:
 
-- **For the backend:
+- **For the backend:**
 
     bash
 
     cd backend
     npm install
 
-- **For the frontend:
+- **For the frontend:**
 
     bash
 
     cd frontend
     npm install
 
-- **Set up environment variables (create a .env file):
+- **Set up environment variables (create a .env file):**
 
     For the backend, include database connection details and secret keys.
 
 ## Start the application:
 
-   - ** For the backend:
+   - ** For the backend:**
 
     bash
 
 cd backend
 npm start
 
-- **For the frontend:
+- **For the frontend:**
 
 bash
 
@@ -117,7 +118,7 @@ Usage
 
 ## Contributing
 
-- **We welcome contributions! Please follow these steps:
+- **We welcome contributions! Please follow these steps:**
 
     Fork the repository.
     Create a new branch (git checkout -b feature/YourFeature).
