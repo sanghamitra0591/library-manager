@@ -1,10 +1,10 @@
-
-.loginWrapper{
+.loginWrapper {
     text-align: center;
     height: 100vh;
     place-content: center;
 }
-.loginContainer{
+
+.loginContainer {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     width: 30%;
     margin: auto;
@@ -12,17 +12,20 @@
     padding: 70px;
     border-radius: 20px;
 }
-.loginContainer>h2{
+
+.loginContainer>h2 {
     font-size: 32px;
     color: #27374D;
 }
-.loginForm{
+
+.loginForm {
     text-align: center;
     padding: 50px;
     margin: auto;
     margin-top: 30px;
 }
-.loginForm >input {
+
+.loginForm>input {
     border: none;
     border-bottom: 1px solid black;
     width: 100%;
@@ -32,7 +35,8 @@
     margin: 5px auto;
     background: none;
 }
-.loginForm>button{
+
+.loginForm>button {
     background-color: #fa0249;
     color: #DDE6ED;
     border: none;
@@ -45,18 +49,72 @@
     outline: none;
     margin: 40px auto auto auto;
 }
-.loginForm>button:hover{
+
+.loginForm>button:hover {
     background-color: #af0032;
     cursor: pointer;
 }
-.loginContainer>p{
+
+.loginContainer>p {
     font-size: 18px;
 }
-.loginContainer>p>span>a{
-    font-size: 18px;
-    text-decoration: underline;
-    color: blue;
+
+@media (max-width: 768px) {
+    .loginContainer {
+        width: 70%;
+        padding: 30px;
+    }
+
+    .loginContainer>h2 {
+        font-size: 28px;
+    }
+
+    .loginForm>input {
+        font-size: 15px;
+        padding: 8px;
+    }
+
+    .loginForm>button {
+        font-size: 18px;
+        padding: 10px 8px;
+        margin: 40px auto auto auto;
+    }
+
+    .loginContainer>p {
+        font-size: 16px;
+    }
+
+    .loginContainer>p>span>a {
+        font-size: 16px;
+    }
 }
-.loginContainer>p>span>a:hover{
-    color: #fa0249;
+
+@media (max-width: 480px) {
+    .loginContainer {
+        width: 70%;
+        padding: 30px;
+    }
+
+    .loginContainer>h2 {
+        font-size: 24px;
+    }
+
+    .loginForm>input {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .loginForm>button {
+        font-size: 16px;
+        padding: 8px 6px;
+        margin: 20px auto auto auto;
+    }
+
+    .loginContainer>p {
+        font-size: 14px;
+    }
+
+    .loginContainer>p>span>a {
+        font-size: 14px;
+    }
 }

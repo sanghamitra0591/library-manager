@@ -83,3 +83,33 @@
     font-size: 0.9em;
     color: #363636;
 }
+
+@media (max-width: 768px) {
+    .banner h1 {
+        font-size: 40px;
+    }
+
+    .banner p {
+        font-size: 1.5em;
+    }
+
+    .feature {
+        width: 80%;
+        margin: 10px auto;
+    }
+
+    .join-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner h1 {
+        font-size: 30px;
+    }
+
+    .banner p {
+        font-size: 1.2em;
+    }
+}

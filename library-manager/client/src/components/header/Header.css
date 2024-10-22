@@ -1,37 +1,43 @@
-.headerWrapper{
+.headerWrapper {
     width: 100%;
     margin: auto;
     position: fixed;
     z-index: 1;
     background-color: black;
 }
-.headerContainer{
+
+.headerContainer {
     width: 85%;
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.headerContainer>h2>a{
+
+.headerContainer>h2>a {
     color: #fff;
     font-size: 34px;
     text-decoration: none;
 }
-.headerContainer>div{
+
+.headerContainer>div {
     color: #fff;
 }
-.headerContainer>div:nth-child(2){
+
+.headerContainer>div:nth-child(2) {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
 }
-.headerContainer>div:nth-child(2)>a{
+
+.headerContainer>div:nth-child(2)>a {
     font-size: 22px;
     color: #fff;
     text-decoration: none;
 }
-.headerContainer>div:nth-child(2)>button{
+
+.headerContainer>div:nth-child(2)>button {
     padding: 10px 20px;
     border: none;
     color: #fff;
@@ -40,12 +46,58 @@
     font-size: 22px;
 }
 
-.headerContainer>div:nth-child(2)>button:hover{
+.headerContainer>div:nth-child(2)>button:hover {
     background-color: #af0032;
     cursor: pointer;
 }
-.headerContainer>div:nth-child(2)>button>a{
+
+.headerContainer>div:nth-child(2)>button>a {
     text-decoration: none;
     color: #fff;
     font-size: 22px;
+}
+
+@media (max-width: 768px) {
+
+    .headerContainer>h2>a {
+        font-size: 24px;
+    }
+
+    .headerContainer>div:nth-child(2)>a,
+    .headerContainer>div:nth-child(2)>button>a {
+        font-size: 18px;
+    }
+
+    .headerContainer>div:nth-child(2)>button {
+        padding: 5px 8px;
+        border-radius: 8px;
+        place-content: center;
+        font-size: 16px;
+    }
+
+    .headerContainer>div:nth-child(2) {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .headerContainer>h2>a {
+        font-size: 20px;
+    }
+
+    .headerContainer>div:nth-child(2)>a,
+    .headerContainer>div:nth-child(2)>button>a {
+        font-size: 15px;
+    }
+
+    .headerContainer>div:nth-child(2)>button {
+        padding: 5px 8px;
+        border-radius: 8px;
+        place-content: center;
+        font-size: 13px;
+    }
+
+    .headerContainer>div:nth-child(2) {
+        gap: 7px;
+    }
 }

@@ -35,7 +35,7 @@
     background-color: #fa0249;
     color: #DDE6ED;
     border: none;
-    width: 40%;
+    width: 45%;
     padding: 15px;
     font-size: 20px;
     border-radius: 10px;
@@ -57,4 +57,63 @@
 }
 .signupContainer>p>span>a:hover{
     color: #fa0249;
+}
+
+
+@media (max-width: 768px) {
+    .signupContainer {
+        width: 70%;
+        padding: 40px;
+    }
+
+    .signupContainer>h2 {
+        font-size: 28px;
+    }
+
+    .signupForm>input {
+        font-size: 15px;
+    }
+
+    .signupForm>button {
+        width: 70%;
+        font-size: 18px;
+    }
+
+    .signupContainer>p {
+        font-size: 16px;
+    }
+
+    .signupContainer>p>span>a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .signupContainer {
+        width: 70%;
+        padding: 30px;
+    }
+
+    .signupContainer>h2 {
+        font-size: 24px;
+    }
+
+    .signupForm>input {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .signupForm>button {
+        font-size: 16px;
+        padding: 8px 6px;
+        margin: 20px auto auto auto;
+    }
+
+    .signupContainer>p {
+        font-size: 14px;
+    }
+
+    .signupContainer>p>span>a {
+        font-size: 14px;
+    }
 }

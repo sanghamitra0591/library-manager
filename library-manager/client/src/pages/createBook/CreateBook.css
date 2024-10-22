@@ -49,3 +49,64 @@
     background-color: #af0032;
     cursor: pointer;
 }
+
+
+@media (max-width: 768px) {
+    .createBookContainer {
+        width: 70%;
+        padding: 30px;
+    }
+
+    .createBookContainer>h2 {
+        font-size: 28px;
+    }
+
+    .createBookForm>input {
+        font-size: 15px;
+        padding: 8px;
+    }
+
+    .createBookForm>button {
+        font-size: 18px;
+        padding: 10px 8px;
+        margin: 40px auto auto auto;
+    }
+
+    .createBookContainer>p {
+        font-size: 16px;
+    }
+
+    .createBookContainer>p>span>a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .createBookContainer {
+        width: 70%;
+        padding: 30px;
+    }
+
+    .createBookContainer>h2 {
+        font-size: 24px;
+    }
+
+    .createBookForm>input {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .createBookForm>button {
+        font-size: 16px;
+        padding: 8px 6px;
+        margin: 20px auto auto auto;
+    }
+
+    .createBookContainer>p {
+        font-size: 14px;
+    }
+
+    .createBookContainer>p>span>a {
+        font-size: 14px;
+    }
+}

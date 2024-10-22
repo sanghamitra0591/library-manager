@@ -48,3 +48,64 @@
     background-color: #af0032;
     cursor: pointer;
 }
+
+
+@media (max-width: 768px) {
+    .createAdminContainer {
+        width: 70%;
+        padding: 30px;
+    }
+
+    .createAdminContainer>h2 {
+        font-size: 28px;
+    }
+
+    .createAdminForm>input {
+        font-size: 15px;
+        padding: 8px;
+    }
+
+    .createAdminForm>button {
+        font-size: 18px;
+        padding: 10px 8px;
+        margin: 40px auto auto auto;
+    }
+
+    .createAdminContainer>p {
+        font-size: 16px;
+    }
+
+    .createAdminContainer>p>span>a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .createAdminContainer {
+        width: 70%;
+        padding: 30px;
+    }
+
+    .createAdminContainer>h2 {
+        font-size: 24px;
+    }
+
+    .createAdminForm>input {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .createAdminForm>button {
+        font-size: 16px;
+        padding: 8px 6px;
+        margin: 20px auto auto auto;
+    }
+
+    .createAdminContainer>p {
+        font-size: 14px;
+    }
+
+    .createAdminContainer>p>span>a {
+        font-size: 14px;
+    }
+}
