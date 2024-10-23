@@ -14,6 +14,7 @@
 - [Usage](#usage)
 - [Sample Login Credentials](#sample-login-credentials)
 - [Contributing](#contributing)
+- [LICENSE](#license)
 
 ## Introduction
 This project is a library management system designed to streamline the process of managing books and user requests. It features a user-friendly interface for both the frontend and backend, allowing different user roles to perform specific actions.
@@ -125,7 +126,7 @@ bash
     Push to the branch (git push origin feature/YourFeature).
     Open a pull request.
 
-License
+## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
