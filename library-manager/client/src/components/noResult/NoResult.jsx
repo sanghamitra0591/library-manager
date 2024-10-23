@@ -1,11 +1,12 @@
 import React from "react";
 import "./NoResult.css"
+import noResultsImage from "../../assets/images/no-result-found.png"
 
 const NoResult = () => {
     return (
         <div className="noResultsWrapper">
             <img
-                src="https://luit.co.in/assets/templates/labflix/images/no-results.png"
+                src={noResultsImage}
                 alt="no results"
             />
         </div>

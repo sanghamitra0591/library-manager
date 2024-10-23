@@ -8,6 +8,8 @@ import ProfileBookCard from '../../components/profileBookCard/ProfileBookCard';
 import Loader from '../../components/loader/Loader';
 import NoResult from '../../components/noResult/NoResult';
 import { toast } from 'react-toastify';
+import homebanner from "../../assets/images/homebanner.jpeg"
+import useravatar from "../../assets/images/useravatar.png"
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -16,6 +18,8 @@ const Profile = () => {
     const [tab, setTab] = useState("none");
     const { currentUser } = useSelector(state => state.auth);
     const { userRequests, loading, error } = useSelector(state => state.requests);
+
+    console.log({userRequests})
 
     const increasedPenalty = JSON.parse(localStorage.getItem("penalty")) || 0;
 
@@ -72,8 +76,8 @@ const Profile = () => {
                     {error && tab !== "none" && <p style={{ color: "Red" }}>{error}</p>}
                     {loading && <Loader />}
                     {!loading && <div className={tab === "none" ? "showProfile" : "hideProfile"}><div className="showProfileSettings">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIudtTcOnMdwrWvu8IugZnHqEyiCSq4NYu1A&s" alt="" />
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSixWENwTZdvqJbo7WMo7JJX4yBrk5Mif_bxg&s" alt="userAvatar" />
+                        <img src={homebanner} alt="" />
+                        <img src={useravatar} alt="userAvatar" />
                     </div>
                         <div className='profileDetailsContainer'>
                             <h2>Hello {currentUser.username}!</h2>

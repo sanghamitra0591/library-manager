@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import pendingwatermark from "../../assets/images/pendingwatermark.png"
+import accepedwatermark from "../../assets/images/acceptedwatermark.png"
+import declinedwatermark from "../../assets/images/declinedwatermark.png"
 import "./ProfileBookCard.css"
 
 const ProfileBookCard = ({ props, onReturn }) => {
@@ -34,9 +37,9 @@ const ProfileBookCard = ({ props, onReturn }) => {
 
     return (
         <div className="profileBookCardWrapper">
-            {request.status === "pending" && <img className="overlay" src='https://static.thenounproject.com/png/3044640-200.png' alt="watermark" />}
-            {request.status === "accepted" && <img className="overlay" src='https://cdn-icons-png.flaticon.com/256/33/33281.png' alt="watermark" />}
-            {request.status === "declined" && <img className="overlay" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGh5SHl9F0E9W9XMmZp5memqOdQ8tLApQcpw&s' alt="watermark" />}
+            {request.status === "pending" && <img className="overlay" src={pendingwatermark} alt="watermark" />}
+            {request.status === "accepted" && <img className="overlay" src={accepedwatermark} alt="watermark" />}
+            {request.status === "declined" && <img className="overlay" src={declinedwatermark} alt="watermark" />}
             <div className="content">
                 <h3>{request.bookId?.title}</h3>
                 <p>Published Year: {request.bookId?.publishYear}</p>

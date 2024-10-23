@@ -13,6 +13,7 @@ import PrivateRoute from './PrivateRoute'
 import About from '../pages/about/About'
 import Admin from '../pages/admin/Admin'
 import UpdateAdmin from '../pages/updateAdmin/UpdateAdmin'
+import NoPageFound from '../components/noPageFound/NoPageFound'
 
 const AllRoutes = () => {
     return (
@@ -31,6 +32,7 @@ const AllRoutes = () => {
             <Route path="/addbook" element={<PrivateRoute><CreateBook /></PrivateRoute>} />
             <Route path="/requests" element={<PrivateRoute><Requests /></PrivateRoute>}></Route>
             <Route path="/noaccess" element={<NotAuthorized />}></Route>
+            <Route path="*" element={<NoPageFound />}></Route>
         </Routes>
     )
 }

@@ -2,10 +2,10 @@
     width: 90vw;
     margin: auto;
     text-align: center;
-    place-content: center;
+    padding-top: 70px;
 }
 .noAccessWrapper>img{
-    width: 40%;
+    width: 50%;
     margin: auto;
     margin-top: 30px;
 }
