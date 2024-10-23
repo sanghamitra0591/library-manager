@@ -148,7 +148,7 @@ const Books = () => {
                 <div className='allBooksHolder'>
                     {books.length > 0 ? books.map(book => {
                         const requestStatus = getRequestStatus(book._id);
-                        let buttonText = "Request Book";
+                        let buttonText =  book.quantity>0 ? "Request Book" : "Not AVailable";
                         let isDisabled = false;
 
                         if (requestStatus === 'pending') {
@@ -158,7 +158,7 @@ const Books = () => {
                             buttonText = "Request Accepted";
                             isDisabled = true;
                         } else if (requestStatus === 'declined' || requestStatus === 'returned') {
-                            buttonText = "Request Book";
+                            buttonText = book.quantity>0 ? "Request Book" : "Not AVailable";
                         }
 
                         return (
