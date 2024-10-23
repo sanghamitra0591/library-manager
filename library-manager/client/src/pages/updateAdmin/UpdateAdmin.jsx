@@ -53,7 +53,6 @@ const UpdateAdmin = () => {
                 setButtonLoading(false);
             })
             .catch((err) => {
-                console.error(err);
                 setButtonLoading(false);
             });
     };
