@@ -23,15 +23,14 @@ const Books = () => {
 
     useEffect(() => {
         const fetchBooksAndRequests = async () => {
+            await dispatch(fetchBooksThunk());
             if (currentUser.role !== "admin") {
                 await dispatch(fetchCategoriesThunk());
             }
             if (currentUser.role === "user") {
                 await dispatch(fetchUserRequestsThunk());
             }
-            await dispatch(fetchBooksThunk());
         };
-
         fetchBooksAndRequests();
     }, [dispatch, currentUser.role]);
 
@@ -62,6 +61,14 @@ const Books = () => {
             }
         }
     };
+
+    const handleSearchInput = (e) => {
+        e.preventDefault();
+        if(e.target.value===""){
+            dispatch(fetchBooksThunk())
+        }
+        setSearchTerm(e.target.value);
+    }
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -122,15 +129,15 @@ const Books = () => {
                     <option value="title">Sort by Title</option>
                     <option value="publishYear">Sort by Publish Year</option>
                 </select>
-                <div>
+                <form onSubmit={handleSearch}>
                     <input
                         type="text"
                         value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onChange={(e) => handleSearchInput(e)}
                         placeholder="Search books by title"
                     />
-                    <button onClick={handleSearch}>{searchLoading ? "Searching" : "Search"}</button>
-                </div>
+                    <button type='submit'>{searchLoading ? "Searching" : "Search"}</button>
+                </form>
 
                 {currentUser?.role === "admin" && <button onClick={() => navigate("/addbook")}>Add Book</button>}
             </div>

@@ -23,7 +23,7 @@
     background-color: rgb(247, 244, 244);
 }
 
-.bookButtonsWrapper>div>input {
+.bookButtonsWrapper>form>input {
     width: 400px;
     padding: 10px;
     font-size: 17px;
@@ -33,7 +33,7 @@
     margin: 0px 5px;
 }
 
-.bookButtonsWrapper>div>button,
+.bookButtonsWrapper>form>button,
 .bookButtonsWrapper>button {
     padding: 10px 15px;
     font-size: 17px;
@@ -93,7 +93,7 @@
     }
 
     .bookButtonsWrapper>select,
-    .bookButtonsWrapper>div>input {
+    .bookButtonsWrapper>form>input {
         width: 60%;
         margin: 5px 0;
         padding: 7px;
@@ -103,7 +103,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .bookButtonsWrapper>div>button,
+    .bookButtonsWrapper>form>button,
     .bookButtonsWrapper>button {
         font-size: 17px;
         padding: 10px;
@@ -139,13 +139,13 @@
     }
 
     .bookButtonsWrapper>select,
-    .bookButtonsWrapper>div>input {
+    .bookButtonsWrapper>form>input {
         width: 200px;
         font-size: 15px;
         padding: 7px;
     }
 
-    .bookButtonsWrapper>div>button,
+    .bookButtonsWrapper>form>button,
     .bookButtonsWrapper>button {
         font-size: 15px;
         padding: 7px;

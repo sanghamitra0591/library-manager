@@ -19,8 +19,6 @@ const Profile = () => {
     const { currentUser } = useSelector(state => state.auth);
     const { userRequests, loading, error } = useSelector(state => state.requests);
 
-    console.log({userRequests})
-
     const increasedPenalty = JSON.parse(localStorage.getItem("penalty")) || 0;
 
     useEffect(() => {
