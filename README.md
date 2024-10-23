@@ -107,7 +107,7 @@ bash
         cd frontend
         npm start
 
-Usage
+## Usage
 
     Access the frontend by navigating to http://localhost:3000 (or the appropriate port).
     Use the respective roles to test different functionalities:
