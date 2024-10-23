@@ -1,12 +1,9 @@
 import React from 'react';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 const Home = () => {
   const navigate = useNavigate();
-  const { userLoggedIn } = useSelector(state=>state.auth);
-
   return (
     <div className="home-container">
       <div className="banner">
@@ -36,7 +33,7 @@ const Home = () => {
         <section className="call-to-action">
           <h2>Join Us Today!</h2>
           <p>Sign up to access exclusive resources and events.</p>
-          <button className="join-button" onClick={() => navigate(userLoggedIn? "/profile" : "/signup")}>Join Now</button>
+          <button className="join-button" onClick={() => navigate("/signup")}>Join Now</button>
         </section>
       </main>
 

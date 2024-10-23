@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Loader from './Loader';
+import loadergif from "../../assets/images/loadergif.webp"
 
 describe('Loader Component', () => {
   test('renders loader image', () => {
@@ -8,7 +9,7 @@ describe('Loader Component', () => {
 
     const loaderImage = screen.getByAltText(/loader/i);
     expect(loaderImage).toBeInTheDocument();
-    expect(loaderImage).toHaveAttribute('src', 'https://cdn.pixabay.com/animation/2022/10/11/03/16/03-16-39-160_512.gif');
+    expect(loaderImage).toHaveAttribute('src', loadergif);
   });
 
   test('has correct class name', () => {

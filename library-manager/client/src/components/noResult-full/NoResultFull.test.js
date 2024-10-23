@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import NoResultFull from './NoResultFull';
+import noResultsImage1 from "../../assets/images/no-result-found.png"
 
 describe('NoResultFull Component', () => {
   test('renders no results image', () => {
@@ -8,7 +9,7 @@ describe('NoResultFull Component', () => {
 
     const noResultsImage = screen.getByAltText(/no results/i);
     expect(noResultsImage).toBeInTheDocument();
-    expect(noResultsImage).toHaveAttribute('src', 'https://luit.co.in/assets/templates/labflix/images/no-results.png');
+    expect(noResultsImage).toHaveAttribute('src', noResultsImage1);
   });
 
   test('has correct class name', () => {

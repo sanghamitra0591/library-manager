@@ -15,12 +15,10 @@ describe('App Component', () => {
       </Provider>
     );
 
-    expect(screen.getByRole('heading', { name: /bookheaven/i })).toBeInTheDocument(); // Adjust based on actual heading
+    expect(screen.getByRole('heading', { name: /bookheaven/i })).toBeInTheDocument();
 
-    // You can also check for other specific headings if needed
-    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument(); // For the h1 heading
+    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
 
-    // Check if ToastContainer is rendered
     const toastContainer = document.querySelector('.Toastify');
     expect(toastContainer).toBeInTheDocument();
   });
