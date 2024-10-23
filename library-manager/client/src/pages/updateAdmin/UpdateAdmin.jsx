@@ -13,7 +13,7 @@ const UpdateAdmin = () => {
     const { currentUser } = useSelector(state => state.auth);
     const { admins, loading, error } = useSelector(state => state.admins);
 
-    const [ buttonloading, setButtonLoading ] = useState(false);
+    const [buttonloading, setButtonLoading] = useState(false);
 
     const userRole = currentUser?.role;
 
@@ -24,9 +24,6 @@ const UpdateAdmin = () => {
     });
 
     useEffect(() => {
-        if (userRole !== "super_admin") {
-            return <NoAccess />
-        }
 
         const adminToUpdate = admins.find(admin => admin._id === adminId);
         if (adminToUpdate) {
@@ -62,48 +59,47 @@ const UpdateAdmin = () => {
     };
 
     if (loading) return <Loader />;
-    if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
-    if (userRole !== "super_admin") return <NoAccess />;
 
     return (
         <div className="updateAdminWrapper">
-            <div className='updateAdminContainer'>
-                <h2>Update Admin</h2>
-                {error && <p style={{color: "Red"}} className="error">{error}</p>}
-                <form className="updateAdminForm" onSubmit={handleSubmit}>
-                    <div>
-                        <label>Username : </label>
-                        <input
-                            type="text"
-                            name="username"
-                            value={adminData.username}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Email : </label>
-                        <input
-                            type="email"
-                            name="email"
-                            value={adminData.email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Category : </label>
-                        <input
-                            type="text"
-                            name="category"
-                            value={adminData.category}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <button type="submit">{buttonloading? "Updating..." : "Update Admin"}</button>
-                </form>
-            </div>
+            {currentUser.role === "super_admin" ?
+                <div className='updateAdminContainer'>
+                    <h2>Update Admin</h2>
+                    {error && <p style={{ color: "Red" }} className="error">{error}</p>}
+                    <form className="updateAdminForm" onSubmit={handleSubmit}>
+                        <div>
+                            <label>Username : </label>
+                            <input
+                                type="text"
+                                name="username"
+                                value={adminData.username}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>Email : </label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={adminData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>Category : </label>
+                            <input
+                                type="text"
+                                name="category"
+                                value={adminData.category}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <button type="submit">{buttonloading ? "Updating..." : "Update Admin"}</button>
+                    </form>
+                </div> : <NoAccess />}
         </div>
     );
 };

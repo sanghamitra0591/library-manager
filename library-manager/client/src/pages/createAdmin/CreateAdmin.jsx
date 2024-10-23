@@ -40,7 +40,6 @@ const CreateAdmin = () => {
 
     return (
         <div className='createAdminWrapper'>
-
             {currentUser.role === "super_admin" ?
                 <div className='createAdminContainer'>
                     <h2>Create Admin</h2>
