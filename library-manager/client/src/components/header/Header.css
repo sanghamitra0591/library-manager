@@ -4,6 +4,8 @@
     position: fixed;
     z-index: 1;
     background-color: black;
+    background: url("https://img.freepik.com/free-vector/black-shiny-wallpaper-background-design_1017-38062.jpg");
+    object-fit: fill;
 }
 
 .headerContainer {
