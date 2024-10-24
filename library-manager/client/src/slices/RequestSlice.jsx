@@ -9,6 +9,7 @@ const initialState = {
 };
 
 const BaseURL = process.env.REACT_APP_BASE_URL;
+
 export const fetchRequestsThunk = createAsyncThunk(
     'requests/fetchRequests',
     async (_, { rejectWithValue }) => {
@@ -38,7 +39,7 @@ export const handleRequestThunk = createAsyncThunk(
         try {
             const token = Cookies.get('authToken');
             const response = await fetch(`${BaseURL}/api/requests/handle`, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
@@ -64,7 +65,7 @@ export const returnRequestThunk = createAsyncThunk(
         try {
             const token = Cookies.get('authToken');
             const response = await fetch(`${BaseURL}/api/requests/return`, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',

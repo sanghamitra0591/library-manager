@@ -22,7 +22,6 @@ const Admin = () => {
     }
   }, [dispatch]);
 
-
   const handleUpdateAdmin = (admin) => {
     navigate(`/updateadmin/${admin._id}`);
   };
