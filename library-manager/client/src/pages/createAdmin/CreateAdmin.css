@@ -33,7 +33,7 @@
     background: none;
 }
 .createAdminForm>button{
-    background-color: #fa0249;
+    background-color: #5a3e29;
     color: #DDE6ED;
     border: none;
     width: 40%;
@@ -45,7 +45,7 @@
     margin: 30px auto auto auto;
 }
 .createAdminForm>button:hover{
-    background-color: #af0032;
+    background-color: #382208;
     cursor: pointer;
 }
 

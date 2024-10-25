@@ -8,13 +8,13 @@
     margin-top: 20px;
 }
 .adminContainer>button {
-    border: 5px solid #fa0249;
+    border: 5px solid #5a3e29;
     background-color: white;
     width: 250px;
     padding: 15px;
     font-size: 19px;
     font-weight: 600;
-    color: #fa0249;
+    color: #5a3e29;
     border-radius: 15px;
     outline: none;
     cursor: pointer;
@@ -41,7 +41,7 @@
     align-items: center;
 }
 .adminCard>div>button{
-    background-color: #fa0249;
+    background-color: #5a3e29;
     color: #DDE6ED;
     border: none;
     width: 40%;
@@ -53,6 +53,6 @@
     margin: 30px auto auto auto;
 }
 .adminCard>div>button:hover{
-    background-color: #af0032;
+    background-color: #382208;
     cursor: pointer;
 }
