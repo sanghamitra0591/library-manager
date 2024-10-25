@@ -32,7 +32,7 @@
     background: none;
 }
 .signupForm>button{
-    background-color: #fa0249;
+    background-color: #5a3e29;
     color: #DDE6ED;
     border: none;
     width: 45%;
@@ -44,7 +44,7 @@
     margin: 30px auto auto auto;
 }
 .signupForm>button:hover{
-    background-color: #af0032;
+    background-color: #382208;
     cursor: pointer;
 }
 .signupContainer>p{
@@ -56,7 +56,7 @@
     color: blue;
 }
 .signupContainer>p>span>a:hover{
-    color: #fa0249;
+    color: #5a3e29;
 }
 
 

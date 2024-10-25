@@ -3,8 +3,7 @@
     margin: auto;
     position: fixed;
     z-index: 1;
-    background-color: black;
-    background: url("https://img.freepik.com/free-vector/black-shiny-wallpaper-background-design_1017-38062.jpg");
+    background-color: #382208;
     object-fit: fill;
 }
 
@@ -43,13 +42,13 @@
     padding: 10px 20px;
     border: none;
     color: #fff;
-    background-color: #fa0249;
+    background-color: #5a3e29;
     border-radius: 15px;
     font-size: 22px;
 }
 
 .headerContainer>div:nth-child(2)>button:hover {
-    background-color: #af0032;
+    background-color: #382208;
     cursor: pointer;
 }
 

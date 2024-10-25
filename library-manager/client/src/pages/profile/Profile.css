@@ -42,7 +42,7 @@
     width: 100%;
     border: none;
     padding: 20px 20px;
-    background-color: #fa0249;
+    background-color: #5a3e29;
     color: #DDE6ED;
     font-size: 22px;
     font-weight: bold;
@@ -50,7 +50,7 @@
 
 .profileSettings>div>button:hover,
 .logoutButtonConatiner>button:hover {
-    background-color: #af0032;
+    background-color: #382208;
     cursor: pointer;
 }
 
@@ -193,7 +193,7 @@
     width: 50%;
     padding: 10px 20px;
     border: none;
-    background-color: #fa0249;
+    background-color: #5a3e29;
     color: #DDE6ED;
     font-size: 22px;
     font-weight: bold;

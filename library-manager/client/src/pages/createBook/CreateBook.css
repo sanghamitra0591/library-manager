@@ -33,7 +33,7 @@
     background: none;
 }
 .createBookForm>button{
-    background-color: #fa0249;
+    background-color: #5a3e29;
     color: #DDE6ED;
     border: none;
     font-weight: bold;
@@ -46,7 +46,7 @@
     margin: 40px auto auto auto;
 }
 .createBookForm>button:hover{
-    background-color: #af0032;
+    background-color: #382208;
     cursor: pointer;
 }
 

@@ -39,7 +39,7 @@
     font-size: 17px;
     border: none;
     outline: none;
-    background-color: #fa0249;
+    background-color: #5a3e29;
     color: #fff;
     font-weight: 600;
     border-radius: 10px;
@@ -63,7 +63,7 @@
     font-size: 17px;
     border: none;
     outline: none;
-    background-color: #fa0249;
+    background-color: #5a3e29;
     color: #fff;
     font-weight: 600;
     border-radius: 10px;
@@ -72,11 +72,11 @@
 }
 
 .bookCardWrapper>button:hover {
-    background-color: #bd0035;
+    background-color: #382208;
 }
 
 .bookCardWrapper>button:disabled {
-    background-color: #d16584;
+    background-color: #9b846a;
     cursor: not-allowed;
 }
 

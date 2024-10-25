@@ -37,7 +37,7 @@
 }
 
 .loginForm>button {
-    background-color: #fa0249;
+    background-color: #5a3e29;
     color: #DDE6ED;
     border: none;
     font-weight: bold;
@@ -51,7 +51,7 @@
 }
 
 .loginForm>button:hover {
-    background-color: #af0032;
+    background-color: #382208;
     cursor: pointer;
 }
 
