@@ -60,6 +60,7 @@
     padding: 10px;
     height: 82vh;
     overflow: auto;
+    background-color: #fff;
 }
 
 .showProfileSettings {
@@ -87,6 +88,8 @@
 
 .showProfile {
     display: block;
+    height: 100%;
+    background: url("https://media.istockphoto.com/id/1467502904/photo/gold-marble-texture-background-used-in-design-for-skin-tile-wa.jpg?b=1&s=612x612&w=0&k=20&c=v_3sXDo-PRSxLmuTe89pJ-i2cipmjwOhJmluQjWPqmE=");
 }
 
 .hideProfile {

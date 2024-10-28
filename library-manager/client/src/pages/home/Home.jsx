@@ -1,11 +1,7 @@
 import React from 'react';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel as BannerCarousel } from 'react-responsive-carousel';
-import homebannerone from "../../assets/images/homebannerone.jpeg";
-import homebannertwo from "../../assets/images/homebannertwo.webp";
-import homebannerthree from "../../assets/images/homebannerthree.jpeg";
+import Slider from "react-slick";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import thegoldenyears from "../../assets/images/bookscover/thegoldenyears.jpg";
@@ -16,10 +12,15 @@ import comeletsrun from "../../assets/images/bookscover/comeletsrun.jpg";
 import asgoodasmyword from "../../assets/images/bookscover/asgoodasmyword.jpg";
 import reflections from "../../assets/images/bookscover/reflections.jpg";
 import justaspire from "../../assets/images/bookscover/justaspire.jpg";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import CustomArrows from '../../components/slider/Slider';
+
+
 
 const Home = () => {
   const navigate = useNavigate();
-
+  
   const popularBooks = [
     {
       author: "Ruskin Bond",
@@ -177,18 +178,8 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <div className='banner'>
-        <BannerCarousel>
-          <div className='carouselCard'>
-            <img src={homebannerthree} alt='bannerone' />
-          </div>
-          <div className='carouselCard'>
-            <img src={homebannertwo} alt='bannertwo' />
-          </div>
-          <div className='carouselCard'>
-            <img src={homebannerone} alt='bannerthree' />
-          </div>
-        </BannerCarousel>
+      <div className='banner slider-container'>
+        <CustomArrows />
       </div>
       <div className="slider">
         <h2>Popular Books : </h2>

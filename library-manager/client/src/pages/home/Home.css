@@ -6,13 +6,25 @@
     padding: 20px;
     padding-top: 80px;
     background: url("https://media.istockphoto.com/id/1467502904/photo/gold-marble-texture-background-used-in-design-for-skin-tile-wa.jpg?b=1&s=612x612&w=0&k=20&c=v_3sXDo-PRSxLmuTe89pJ-i2cipmjwOhJmluQjWPqmE=");
+    opacity: 0.9;
 }
 
 .banner {
-    width: 90%;
+    width: 97%;
     margin: auto;
     margin-top: 20px;
     padding: 20px;
+}
+
+.banner>div button {
+    width: 50px;
+    height: 50px;
+    color: black;
+    background-color: black;
+}
+
+.carouselCard >img{
+    width: 100%;
 }
 
 .carouselCard>img {
@@ -49,7 +61,8 @@
 .authorslider>div{
     height: 85%;
     padding-top: 10px;
-    border-radius: 15px;
+    border-radius: 35px 0px 35px 0px;
+    background: url("https://www.shutterstock.com/image-photo/white-beige-paper-background-texture-600nw-2473726727.jpg");
 }
 .bookCardHomeWrapper {
     height: 90%;
@@ -72,7 +85,7 @@
     text-align: center;
     margin: auto;
     font-size: 17px;
-    background: url("https://www.shutterstock.com/image-photo/white-beige-paper-background-texture-600nw-2473726727.jpg");
+    background: transparent;
 }
 
 .authorCardHomeWrapper>div:nth-child(1)>img{
