@@ -8,7 +8,7 @@ import ProfileBookCard from '../../components/profileBookCard/ProfileBookCard';
 import Loader from '../../components/loader/Loader';
 import NoResult from '../../components/noResult/NoResult';
 import { toast } from 'react-toastify';
-import homebanner from "../../assets/images/homebanner.jpeg"
+import homebanner from "../../assets/images/homebanner.jpg"
 import useravatar from "../../assets/images/useravatar.png"
 
 const Profile = () => {
@@ -74,7 +74,7 @@ const Profile = () => {
                     {error && tab !== "none" && <p style={{ color: "Red" }}>{error}</p>}
                     {loading && <Loader />}
                     {!loading && <div className={tab === "none" ? "showProfile" : "hideProfile"}><div className="showProfileSettings">
-                        <img src={homebanner} alt="" />
+                        <img src="https://t3.ftcdn.net/jpg/08/32/59/34/360_F_832593456_WXXeJ7Awhk1YSosJZBIhtDmSD92NSipp.jpg" alt="" />
                         <img src={useravatar} alt="userAvatar" />
                     </div>
                         <div className='profileDetailsContainer'>

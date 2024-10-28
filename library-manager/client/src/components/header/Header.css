@@ -8,7 +8,7 @@
 }
 
 .headerContainer {
-    width: 85%;
+    width: 90%;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -42,13 +42,13 @@
     padding: 10px 20px;
     border: none;
     color: #fff;
-    background-color: #5a3e29;
+    background-color: #7e624c;
     border-radius: 15px;
     font-size: 22px;
 }
 
 .headerContainer>div:nth-child(2)>button:hover {
-    background-color: #382208;
+    background-color: #664e34;
     cursor: pointer;
 }
 

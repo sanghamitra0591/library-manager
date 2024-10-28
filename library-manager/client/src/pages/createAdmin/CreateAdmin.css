@@ -11,6 +11,7 @@
     place-content: center;
     padding: 70px;
     border-radius: 20px;
+    background: rgba(102, 78, 52, 0.5);
 }
 .createAdminContainer>h2{
     font-size: 32px;

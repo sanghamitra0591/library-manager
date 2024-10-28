@@ -1,5 +1,6 @@
 .noResultsWrapperFull{
     width: 80vw;
+    height: 60vh;
     margin: auto;
     text-align: center;
     place-content: center;
@@ -7,5 +8,5 @@
 .noResultsWrapperFull>img{
     width: 45%;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 10px;
 }
