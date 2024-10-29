@@ -91,29 +91,19 @@
     margin: 5px;
 }
 
-.requestCardButtonsHolder>button:nth-child(1) {
-    background-color: rgb(84, 223, 84);
+.requestCardButtonsHolder>button:nth-child(1), .requestCardButtonsHolder>button:nth-child(2) {
+    background-color: #523825;
+    color: #fff;
+    cursor: pointer;
 }
 
-.requestCardButtonsHolder>button:nth-child(2) {
-    background-color: rgb(255, 91, 91);
-}
-
-.requestCardButtonsHolder>button:nth-child(1):hover {
+.requestCardButtonsHolder>button:nth-child(1):hover, .requestCardButtonsHolder>button:nth-child(2):hover {
     background-color: rgb(7, 218, 7);
 }
 
-.requestCardButtonsHolder>button:nth-child(2):hover {
-    background-color: rgb(255, 21, 21);
-}
-
-.requestCardButtonsHolder>button:disabled {
-    background-color: gray;
+.requestCardButtonsHolder>button:disabled, .requestCardButtonsHolder>button:disabled:hover {
+    background-color: #b3a8a2;
     cursor: not-allowed;
-}
-
-.requestCardButtonsHolder>button:disabled:hover {
-    background-color: gray;
 }
 
 .requestTabHeaderWrapper {
@@ -141,7 +131,8 @@
 
 .requestTabHeaderSelected {
     border: none;
-    background-color: #5a3e29;
+    background-color: #523825;
+    color: #fff;
     width: 25%;
     border-radius: 20px;
 }

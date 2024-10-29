@@ -1,4 +1,8 @@
-.loaderWrapper{
+.loaderWrapper {
     text-align: center;
     padding-top: 30px;
+}
+
+.loaderWrapper>img {
+    mix-blend-mode: multiply;
 }

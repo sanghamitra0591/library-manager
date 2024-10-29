@@ -11,7 +11,7 @@
     place-content: center;
     padding: 70px;
     border-radius: 20px;
-    background: rgba(102, 78, 52, 0.5);
+    background: rgba(179, 154, 136, 0.5);
 }
 .createAdminContainer>h2{
     font-size: 32px;
@@ -34,7 +34,7 @@
     background: none;
 }
 .createAdminForm>button{
-    background-color: #5a3e29;
+    background-color: #523825;
     color: #DDE6ED;
     border: none;
     width: 40%;
