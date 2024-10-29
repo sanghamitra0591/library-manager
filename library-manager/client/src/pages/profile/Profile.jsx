@@ -8,7 +8,7 @@ import ProfileBookCard from '../../components/profileBookCard/ProfileBookCard';
 import Loader from '../../components/loader/Loader';
 import NoResult from '../../components/noResult/NoResult';
 import { toast } from 'react-toastify';
-import homebanner from "../../assets/images/homebanner.jpg"
+import homebanner from "../../assets/images/homebannerr.webp"
 import useravatar from "../../assets/images/useravatar.png"
 
 const Profile = () => {
