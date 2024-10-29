@@ -1,7 +1,6 @@
 import React from 'react';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
-import Slider from "react-slick";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import thegoldenyears from "../../assets/images/bookscover/thegoldenyears.jpg";

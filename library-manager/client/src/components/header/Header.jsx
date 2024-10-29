@@ -2,13 +2,17 @@ import React from 'react'
 import "./Header.css"
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import logo from "../../assets/images/bookheavenlogo.webp";
 
 const Header = () => {
   const { userLoggedIn, currentUser } = useSelector(state => state.auth);
   return (
     <div className='headerWrapper'>
       <div className='headerContainer'>
-        <h2><Link to="/">BookHeaven</Link></h2>
+        <div>
+          <img src={logo} alt="" />
+          <h2><Link to="/">BookHeaven</Link></h2>
+        </div>
         <div>
           <Link to="/books">Books</Link>
           {currentUser?.role==="admin" && <Link to="/requests">Requests</Link>}

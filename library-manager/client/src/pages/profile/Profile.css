@@ -75,6 +75,7 @@
 }
 
 .showProfileSettings>img:nth-child(2) {
+    border: 5px solid #694c37;
     width: 280px;
     height: 280px;
     border-radius: 50%;
@@ -82,8 +83,6 @@
     position: absolute;
     right: 5%;
     top: 40%;
-    object-fit: cover;
-    object-position: center;
 }
 
 .showProfile {
