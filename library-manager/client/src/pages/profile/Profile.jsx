@@ -74,7 +74,7 @@ const Profile = () => {
                     {error && tab !== "none" && <p style={{ color: "Red" }}>{error}</p>}
                     {loading && <Loader />}
                     {!loading && <div className={tab === "none" ? "showProfile" : "hideProfile"}><div className="showProfileSettings">
-                        <img src="https://t3.ftcdn.net/jpg/08/32/59/34/360_F_832593456_WXXeJ7Awhk1YSosJZBIhtDmSD92NSipp.jpg" alt="" />
+                        <img src={homebanner} alt="" />
                         <img src={useravatar} alt="userAvatar" />
                     </div>
                         <div className='profileDetailsContainer'>

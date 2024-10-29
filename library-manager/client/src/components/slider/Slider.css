@@ -1,0 +1,7 @@
+
+.slick-prev::before,
+.slick-next::before {
+    font-size: 60px; 
+    color: rgb(0, 0, 0);
+    line-height: 1;
+}

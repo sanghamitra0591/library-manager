@@ -89,8 +89,8 @@
 }
 
 .authorCardHomeWrapper>div:nth-child(1)>img{
-    height: 150px;
-    width: 150px;
+    height: 180px;
+    width: 180px;
     border-radius: 50%;
 }
 .main-content {
@@ -121,7 +121,7 @@
 }
 
 .feature h3 {
-    color: #5a3e29;
+    color: #523825;
 }
 
 .call-to-action {
@@ -129,7 +129,7 @@
 }
 
 .join-button {
-    background-color: #6F4E37;
+    background-color: #523825;
     color: white;
     border: none;
     padding: 15px 30px;
@@ -139,7 +139,7 @@
 }
 
 .join-button:hover {
-    background-color: #44392b;
+    background-color: #5f4939;
 }
 
 .footer {

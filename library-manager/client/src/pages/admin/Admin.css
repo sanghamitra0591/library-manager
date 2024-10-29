@@ -8,7 +8,7 @@
     margin-top: 20px;
 }
 .adminContainer>button {
-    border: 5px solid #5a3e29;
+    border: 5px solid #523825;
     background-color: white;
     width: 250px;
     padding: 15px;
@@ -41,7 +41,7 @@
     align-items: center;
 }
 .adminCard>div>button{
-    background-color: #5a3e29;
+    background-color: #523825;
     color: #DDE6ED;
     border: none;
     width: 40%;

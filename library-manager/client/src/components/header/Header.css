@@ -3,7 +3,7 @@
     margin: auto;
     position: fixed;
     z-index: 1;
-    background-color: #382208;
+    background-color: #523825;
     object-fit: fill;
 }
 
@@ -42,7 +42,7 @@
     padding: 10px 20px;
     border: none;
     color: #fff;
-    background-color: #7e624c;
+    background-color: #8a6b53;
     border-radius: 15px;
     font-size: 22px;
 }
