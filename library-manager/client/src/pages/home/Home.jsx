@@ -15,6 +15,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CustomArrows from '../../components/slider/Slider';
 
+import authorone from "../../../src/assets/images/authors/authorone.webp";
+import authortwo from "../../../src/assets/images/authors/authortwo.webp";
+import authorthree from "../../../src/assets/images/authors/authorthree.webp";
+import authorfour from "../../../src/assets/images/authors/authorfour.jpeg";
+import authorfive from "../../../src/assets/images/authors/authorfive.jpeg";
+import authorsix from "../../../src/assets/images/authors/authorsix.webp";
+import authorseven from "../../../src/assets/images/authors/authorseven.avif";
+import authoreight from "../../../src/assets/images/authors/authoreight.avif";
+import authornine from "../../../src/assets/images/authors/authornine.avif";
+import authorten from "../../../src/assets/images/authors/authorten.avif";
+import authoreleven from "../../../src/assets/images/authors/authoreleven.avif";
+import authortwelve from "../../../src/assets/images/authors/authortwelve.webp";
+
 
 
 const Home = () => {
@@ -127,51 +140,51 @@ const Home = () => {
   const authors = [
     {
       name: "Bhavik Sarkhedi",
-      avatar: "https://images.pexels.com/photos/7562313/pexels-photo-7562313.jpeg?auto=compress&cs=tinysrgb&w=600"
+      avatar: authorone
     },
     {
       name: "Arundhati Roy",
-      avatar: "https://images.pexels.com/photos/5257554/pexels-photo-5257554.jpeg?auto=compress&cs=tinysrgb&w=600"
+      avatar: authortwo
     },
     {
       name: "Sarita Chandra",
-      avatar: "https://images.pexels.com/photos/5704849/pexels-photo-5704849.jpeg?auto=compress&cs=tinysrgb&w=600"
+      avatar: authorthree
     },
     {
       name: "Amrita Pritam",
-      avatar: "https://images.pexels.com/photos/4350178/pexels-photo-4350178.jpeg?auto=compress&cs=tinysrgb&w=600"
+      avatar: authorfour
     },
     {
       name: "R.K. Narayan",
-      avatar: "https://images.pexels.com/photos/7322232/pexels-photo-7322232.jpeg?auto=compress&cs=tinysrgb&w=600"
+      avatar: authorfive
     },
     {
       name: "Aravind Adiga",
-      avatar: "https://images.pexels.com/photos/5384429/pexels-photo-5384429.jpeg?auto=compress&cs=tinysrgb&w=600"
+      avatar: authorsix
     },
     {
       name: "Morgan Housel",
-      avatar: "https://www.crossword.in/cdn/shop/files/Morgan_Housel_Photo_180x.jpg?v=1682668774"
+      avatar: authorseven
     },
     {
       name: "Amish Tripathi",
-      avatar: "https://www.crossword.in/cdn/shop/files/Amish_Tripathi_Photo_180x.jpg?v=1682665946"
+      avatar: authoreight
     },
     {
       name: "Monika Halan",
-      avatar: "https://www.crossword.in/cdn/shop/files/monika_halan_180x.jpg?v=1718183142"
+      avatar: authornine
     },
     {
       name: "John Grishan",
-      avatar: "https://www.crossword.in/cdn/shop/files/images_73d49c58-493a-44a1-9cd1-0be64645f6a6_180x.jpg?v=1718185678"
+      avatar: authorten
     },
     {
       name: "Ruskin Bond",
-      avatar: "https://www.crossword.in/cdn/shop/files/ruskin_bond_20140602_180x.jpg?v=1682514613"
+      avatar: authoreleven
     },
     {
       name: "Agatha Christie",
-      avatar: "https://www.crossword.in/cdn/shop/files/Agatha_Christie_180x.jpg?v=1695211424"
+      avatar: authortwelve
     }
   ]
 
