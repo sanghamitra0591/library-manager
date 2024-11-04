@@ -97,8 +97,12 @@
     cursor: pointer;
 }
 
-.requestCardButtonsHolder>button:nth-child(1):hover, .requestCardButtonsHolder>button:nth-child(2):hover {
+.requestCardButtonsHolder>button:nth-child(1):hover {
     background-color: rgb(7, 218, 7);
+}
+
+.requestCardButtonsHolder>button:nth-child(2):hover {
+    background-color: rgb(218, 32, 7);
 }
 
 .requestCardButtonsHolder>button:disabled, .requestCardButtonsHolder>button:disabled:hover {
